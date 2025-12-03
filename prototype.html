@@ -1,0 +1,2411 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElectroCare - Layanan Servis Elektronik</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            padding: 15px;
+            color: white;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            margin: 0 auto 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .search-bar {
+            background: white;
+            padding: 10px 15px;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #64748b;
+        }
+
+        .search-bar input {
+            border: none;
+            outline: none;
+            flex: 1;
+            font-size: 14px;
+            width: 100%;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px;
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            min-width: 50px;
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .user-details {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .user-details h2 {
+            color: #1e40af;
+            font-size: 18px;
+            margin-bottom: 3px;
+        }
+
+        .user-phone {
+            color: #64748b;
+            font-size: 12px;
+        }
+
+        .points-badge {
+            background: #fef3c7;
+            padding: 6px 12px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #92400e;
+            font-weight: bold;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            padding: 15px;
+        }
+
+        .category-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 15px 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .category-card:hover {
+            border-color: #3b82f6;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .category-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .category-name {
+            color: #1e40af;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .section {
+            padding: 15px;
+        }
+
+        .section-title {
+            color: #1e40af;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .promo-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .promo-card {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            padding: 15px;
+            border-radius: 12px;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .promo-card:hover {
+            transform: scale(1.02);
+        }
+
+        .promo-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        .promo-desc {
+            font-size: 13px;
+            opacity: 0.9;
+            margin-bottom: 8px;
+        }
+
+        .promo-code {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 12px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .guarantee-banner {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 15px;
+        }
+
+        .guarantee-icon {
+            font-size: 40px;
+            margin-bottom: 8px;
+        }
+
+        .guarantee-text {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .guarantee-subtext {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            max-width: 480px;
+            width: 100%;
+            background: white;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            padding: 10px 0;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            z-index: 100;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: #64748b;
+            cursor: pointer;
+            transition: color 0.3s;
+            padding: 5px;
+        }
+
+        .nav-item.active {
+            color: #2563eb;
+        }
+
+        .nav-icon {
+            font-size: 22px;
+        }
+
+        .nav-text {
+            font-size: 11px;
+        }
+
+        .technician-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .technician-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .technician-card:hover {
+            border-color: #3b82f6;
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.2);
+        }
+
+        .tech-header {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .tech-avatar {
+            font-size: 40px;
+            min-width: 40px;
+        }
+
+        .tech-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .tech-name {
+            color: #1e40af;
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .tech-rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #f59e0b;
+            margin-bottom: 4px;
+            font-size: 13px;
+        }
+
+        .tech-specialty {
+            color: #64748b;
+            font-size: 12px;
+        }
+
+        .tech-details {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 8px;
+            border-top: 1px solid #e2e8f0;
+            font-size: 13px;
+        }
+
+        .tech-distance {
+            color: #64748b;
+        }
+
+        .tech-price {
+            color: #2563eb;
+            font-weight: bold;
+        }
+
+        .order-button {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            width: 100%;
+            margin-top: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .order-button:hover {
+            transform: scale(1.02);
+        }
+
+        .back-button {
+            position: fixed;
+            top: 15px;
+            left: calc(50% - 240px + 15px);
+            background: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 101;
+            font-size: 20px;
+            color: #1e40af;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .page {
+            padding-bottom: 70px;
+        }
+
+        /* Chat Styles */
+        .chat-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .chat-item {
+            display: flex;
+            gap: 12px;
+            padding: 12px;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .chat-item:hover {
+            border-color: #3b82f6;
+            box-shadow: 0 3px 10px rgba(59, 130, 246, 0.2);
+        }
+
+        .chat-avatar {
+            font-size: 40px;
+            min-width: 40px;
+        }
+
+        .chat-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .chat-name {
+            color: #1e40af;
+            font-weight: bold;
+            margin-bottom: 4px;
+            font-size: 14px;
+        }
+
+        .chat-last-message {
+            color: #64748b;
+            font-size: 13px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .chat-meta {
+            text-align: right;
+            min-width: 60px;
+        }
+
+        .chat-time {
+            color: #94a3b8;
+            font-size: 11px;
+            margin-bottom: 4px;
+        }
+
+        .chat-unread {
+            background: #ef4444;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        /* Chat Room Styles */
+        .chat-room-header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            padding: 12px 15px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .chat-room-avatar {
+            font-size: 36px;
+        }
+
+        .chat-room-info h3 {
+            margin-bottom: 2px;
+            font-size: 16px;
+        }
+
+        .chat-room-status {
+            font-size: 11px;
+            opacity: 0.8;
+        }
+
+        .chat-messages {
+            padding: 15px;
+            height: calc(100vh - 200px);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .message {
+            display: flex;
+            gap: 8px;
+            max-width: 80%;
+        }
+
+        .message.sent {
+            align-self: flex-end;
+            flex-direction: row-reverse;
+        }
+
+        .message-avatar {
+            font-size: 28px;
+            min-width: 28px;
+        }
+
+        .message-bubble {
+            padding: 10px 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            word-wrap: break-word;
+        }
+
+        .message.received .message-bubble {
+            background: #f1f5f9;
+            color: #1e293b;
+        }
+
+        .message.sent .message-bubble {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .message-time {
+            font-size: 10px;
+            color: #94a3b8;
+            margin-top: 2px;
+        }
+
+        .chat-input-container {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            max-width: 480px;
+            width: 100%;
+            background: white;
+            padding: 12px;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            gap: 8px;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 20px;
+            outline: none;
+            font-size: 13px;
+        }
+
+        .chat-send-btn {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            transition: transform 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chat-send-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* History Styles */
+        .history-item {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+
+        .history-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            gap: 8px;
+        }
+
+        .history-date {
+            color: #64748b;
+            font-size: 11px;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .status-badge {
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .status-completed {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .status-ongoing {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .status-cancelled {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .history-tech {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .history-tech-avatar {
+            font-size: 32px;
+            min-width: 32px;
+        }
+
+        .history-tech-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .history-tech-name {
+            font-weight: bold;
+            color: #1e40af;
+            font-size: 14px;
+        }
+
+        .history-service {
+            color: #64748b;
+            font-size: 12px;
+        }
+
+        .history-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 8px;
+            border-top: 1px solid #e2e8f0;
+            gap: 8px;
+        }
+
+        .history-price {
+            color: #2563eb;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .review-btn {
+            background: #f59e0b;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        /* Profile Styles */
+        .profile-header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            padding: 25px 15px;
+            text-align: center;
+            color: white;
+        }
+
+        .profile-avatar-large {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            margin: 0 auto 12px;
+        }
+
+        .profile-name {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .profile-phone {
+            opacity: 0.9;
+            font-size: 13px;
+        }
+
+        .profile-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            padding: 15px;
+            background: white;
+            margin-top: -15px;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 12px;
+            background: #f1f5f9;
+            border-radius: 10px;
+        }
+
+        .stat-value {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2563eb;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: #64748b;
+        }
+
+        .profile-menu {
+            padding: 15px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .menu-item:hover {
+            border-color: #3b82f6;
+            background: #f8fafc;
+        }
+
+        .menu-icon {
+            font-size: 22px;
+            min-width: 22px;
+        }
+
+        .menu-text {
+            flex: 1;
+            color: #1e293b;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .menu-arrow {
+            color: #cbd5e1;
+            font-size: 18px;
+        }
+
+        .loyalty-section {
+            background: #fef3c7;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .loyalty-icon {
+            font-size: 36px;
+            margin-bottom: 8px;
+        }
+
+        .loyalty-title {
+            color: #92400e;
+            font-size: 15px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .loyalty-text {
+            color: #92400e;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        /* Tracking/GPS Styles */
+        .tracking-container {
+            height: calc(100vh - 140px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            position: relative;
+        }
+
+        .map-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 49px, #cbd5e1 49px, #cbd5e1 50px),
+                repeating-linear-gradient(90deg, transparent, transparent 49px, #cbd5e1 49px, #cbd5e1 50px);
+            opacity: 0.3;
+        }
+
+        .road {
+            position: absolute;
+            background: #64748b;
+            opacity: 0.4;
+        }
+
+        .road-vertical {
+            width: 40px;
+            height: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .road-horizontal {
+            height: 40px;
+            width: 100%;
+            top: 40%;
+        }
+
+        .road-line {
+            position: absolute;
+            background: white;
+        }
+
+        .road-line-v {
+            width: 4px;
+            height: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: roadMove 1s linear infinite;
+        }
+
+        @keyframes roadMove {
+            from { top: -20px; }
+            to { top: 100%; }
+        }
+
+        .building {
+            position: absolute;
+            background: #94a3b8;
+            border-radius: 4px;
+            opacity: 0.6;
+        }
+
+        .technician-marker {
+            position: absolute;
+            z-index: 10;
+            animation: moveMarker 8s ease-in-out infinite;
+        }
+
+        @keyframes moveMarker {
+            0%, 100% { 
+                top: 70%;
+                left: 30%;
+            }
+            50% { 
+                top: 30%;
+                left: 60%;
+            }
+        }
+
+        .motor-icon {
+            font-size: 48px;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+            animation: motorBounce 0.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes motorBounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-5px); }
+        }
+
+        .destination-marker {
+            position: absolute;
+            top: 30%;
+            left: 60%;
+            z-index: 5;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { 
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% { 
+                transform: scale(1.2);
+                opacity: 0.7;
+            }
+        }
+
+        .destination-pin {
+            font-size: 40px;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+        }
+
+        .tracking-info-card {
+            position: absolute;
+            bottom: 80px;
+            left: 15px;
+            right: 15px;
+            background: white;
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            z-index: 20;
+        }
+
+        .tech-status {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .tech-status-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+        }
+
+        .tech-status-info {
+            flex: 1;
+        }
+
+        .tech-status-name {
+            font-weight: bold;
+            color: #1e40af;
+            margin-bottom: 3px;
+        }
+
+        .tech-status-eta {
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        .status-arriving {
+            color: #059669;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .tracking-details {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .tracking-stat {
+            text-align: center;
+            padding: 8px;
+            background: #f1f5f9;
+            border-radius: 8px;
+        }
+
+        .tracking-stat-icon {
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+
+        .tracking-stat-value {
+            font-weight: bold;
+            color: #2563eb;
+            font-size: 14px;
+            margin-bottom: 2px;
+        }
+
+        .tracking-stat-label {
+            font-size: 10px;
+            color: #64748b;
+        }
+
+        .tracking-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .tracking-btn {
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            transition: transform 0.2s;
+        }
+
+        .tracking-btn:hover {
+            transform: scale(1.02);
+        }
+
+        .btn-call {
+            background: #10b981;
+            color: white;
+        }
+
+        .btn-chat {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .route-line {
+            position: absolute;
+            width: 3px;
+            background: #3b82f6;
+            z-index: 1;
+            opacity: 0.6;
+            animation: routeGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes routeGlow {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; box-shadow: 0 0 10px #3b82f6; }
+        }
+
+        /* Order Form Styles */
+        .order-form-container {
+            padding: 15px;
+            padding-bottom: 80px;
+        }
+
+        .form-header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            padding: 15px;
+            border-radius: 12px;
+            color: white;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .form-header-avatar {
+            font-size: 40px;
+        }
+
+        .form-header-info h3 {
+            margin-bottom: 3px;
+            font-size: 16px;
+        }
+
+        .form-header-specialty {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            display: block;
+            color: #1e40af;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .form-label-required::after {
+            content: '*';
+            color: #ef4444;
+            margin-left: 4px;
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            border-color: #3b82f6;
+        }
+
+        .form-textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .form-radio-group {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .form-radio-item {
+            position: relative;
+        }
+
+        .form-radio-input {
+            position: absolute;
+            opacity: 0;
+        }
+
+        .form-radio-label {
+            display: block;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 13px;
+        }
+
+        .form-radio-input:checked + .form-radio-label {
+            border-color: #3b82f6;
+            background: #eff6ff;
+            color: #1e40af;
+            font-weight: 600;
+        }
+
+        .form-chip-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .form-chip {
+            padding: 8px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 20px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        .form-chip.active {
+            border-color: #3b82f6;
+            background: #eff6ff;
+            color: #1e40af;
+            font-weight: 600;
+        }
+
+        .price-estimate-card {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+
+        .price-estimate-title {
+            color: #92400e;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .price-estimate-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 13px;
+            color: #78350f;
+        }
+
+        .price-estimate-total {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 10px;
+            border-top: 2px solid #fbbf24;
+            font-weight: bold;
+            font-size: 16px;
+            color: #92400e;
+        }
+
+        .form-submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin-bottom: 10px;
+        }
+
+        .form-submit-btn:hover {
+            transform: scale(1.02);
+        }
+
+        .form-cancel-btn {
+            width: 100%;
+            padding: 15px;
+            background: white;
+            color: #64748b;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .form-cancel-btn:hover {
+            border-color: #cbd5e1;
+            background: #f8fafc;
+        }
+
+        .guarantee-note {
+            background: #d1fae5;
+            color: #065f46;
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 13px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .location-btn {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-size: 12px;
+            cursor: pointer;
+            margin-top: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 480px) {
+            .container {
+                max-width: 100%;
+            }
+
+            .back-button {
+                left: 15px;
+            }
+
+            .bottom-nav {
+                max-width: 100%;
+            }
+
+            .chat-input-container {
+                max-width: 100%;
+            }
+
+            .categories {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 8px;
+                padding: 12px;
+            }
+
+            .category-card {
+                padding: 12px 6px;
+            }
+
+            .category-icon {
+                font-size: 28px;
+            }
+
+            .category-name {
+                font-size: 11px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .user-info {
+                padding: 12px;
+            }
+
+            .user-avatar {
+                width: 45px;
+                height: 45px;
+                min-width: 45px;
+                font-size: 22px;
+            }
+
+            .user-details h2 {
+                font-size: 16px;
+            }
+
+            .points-badge {
+                padding: 5px 10px;
+                font-size: 11px;
+            }
+
+            .section {
+                padding: 12px;
+            }
+
+            .section-title {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Back Button -->
+        <div class="back-button hidden" id="backButton" onclick="goBack()">
+            ←
+        </div>
+
+        <!-- Home Page -->
+        <div id="homePage" class="page">
+            <div class="header">
+                <div class="logo">
+                    <div class="logo-icon">🔧</div>
+                    <div class="logo-text">ELECTRO<span style="color: #60a5fa;">CARE</span></div>
+                </div>
+                <div class="search-bar">
+                    <span>🔍</span>
+                    <input type="text" placeholder="Mau berencana apa hari ini?">
+                </div>
+            </div>
+
+            <div class="user-info">
+                <div class="user-avatar">👤</div>
+                <div class="user-details">
+                    <h2>Halo Rifa!</h2>
+                    <div class="user-phone">+6289530348150</div>
+                </div>
+                <div class="points-badge">
+                    ⭐ <span id="pointsDisplay">150</span>
+                </div>
+            </div>
+
+            <div class="categories">
+                <div class="category-card" onclick="showTechnicians('HP')">
+                    <div class="category-icon">📱</div>
+                    <div class="category-name">HP</div>
+                </div>
+                <div class="category-card" onclick="showTechnicians('Laptop')">
+                    <div class="category-icon">💻</div>
+                    <div class="category-name">Laptop</div>
+                </div>
+                <div class="category-card" onclick="showTechnicians('Elektronik')">
+                    <div class="category-icon">⚡</div>
+                    <div class="category-name">Elektronik</div>
+                </div>
+                <div class="category-card" onclick="showTechnicians('Kamera')">
+                    <div class="category-icon">📷</div>
+                    <div class="category-name">Kamera</div>
+                </div>
+            </div>
+
+            <div class="guarantee-banner">
+                <div class="guarantee-icon">🛡️</div>
+                <div class="guarantee-text">GARANSI 1 MINGGU</div>
+                <div class="guarantee-subtext">Jaminan kualitas untuk setiap servis</div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">
+                    🎁 PROMO SPESIAL
+                </div>
+                <div class="promo-cards">
+                    <div class="promo-card">
+                        <div class="promo-title">Diskon 30%</div>
+                        <div class="promo-desc">Servis HP pertama kali</div>
+                        <div class="promo-code">NEWUSER30</div>
+                    </div>
+                    <div class="promo-card">
+                        <div class="promo-title">Gratis Ongkir</div>
+                        <div class="promo-desc">Minimal servis Rp 100.000</div>
+                        <div class="promo-code">FREEDELIVERY</div>
+                    </div>
+                    <div class="promo-card">
+                        <div class="promo-title">Cashback 50rb</div>
+                        <div class="promo-desc">Servis laptop minggu ini</div>
+                        <div class="promo-code">LAPTOP50K</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">
+                    🏆 Bonus Poin Loyalty
+                </div>
+                <div class="loyalty-section">
+                    <div class="loyalty-icon">🎯</div>
+                    <div class="loyalty-title">Kumpulkan poin setiap pemesanan!</div>
+                    <div class="loyalty-text">
+                        • 10 poin per servis<br>
+                        • 50 poin = Diskon Rp 25.000<br>
+                        • 100 poin = Diskon Rp 50.000<br>
+                        • 200 poin = Gratis 1x servis
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Technician List Page -->
+        <div id="technicianPage" class="page hidden">
+            <div class="header">
+                <div class="section-title" style="color: white; margin: 0;">
+                    <span id="categoryTitle">Pilih Teknisi</span>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="technician-list" id="technicianList">
+                    <!-- Technicians will be inserted here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Chat List Page -->
+        <div id="chatListPage" class="page hidden">
+            <div class="header">
+                <div class="section-title" style="color: white; margin: 0;">
+                    💬 Pesan
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="chat-list">
+                    <div class="chat-item" onclick="openChatRoom('Budi Santoso', '👨‍🔧')">
+                        <div class="chat-avatar">👨‍🔧</div>
+                        <div class="chat-content">
+                            <div class="chat-name">Budi Santoso</div>
+                            <div class="chat-last-message">Baik, saya segera ke lokasi Anda</div>
+                        </div>
+                        <div class="chat-meta">
+                            <div class="chat-time">10:30</div>
+                            <div class="chat-unread">2</div>
+                        </div>
+                    </div>
+
+                    <div class="chat-item" onclick="openChatRoom('Ahmad Rizki', '👨‍💼')">
+                        <div class="chat-avatar">👨‍💼</div>
+                        <div class="chat-content">
+                            <div class="chat-name">Ahmad Rizki</div>
+                            <div class="chat-last-message">Terima kasih, semoga awet ya!</div>
+                        </div>
+                        <div class="chat-meta">
+                            <div class="chat-time">Kemarin</div>
+                        </div>
+                    </div>
+
+                    <div class="chat-item" onclick="openChatRoom('Dedi Kurniawan', '👨‍🔬')">
+                        <div class="chat-avatar">👨‍🔬</div>
+                        <div class="chat-content">
+                            <div class="chat-name">Dedi Kurniawan</div>
+                            <div class="chat-last-message">Laptop sudah selesai diperbaiki</div>
+                        </div>
+                        <div class="chat-meta">
+                            <div class="chat-time">2 hari</div>
+                        </div>
+                    </div>
+
+                    <div class="chat-item" onclick="openChatRoom('Eko Prasetyo', '👨‍🎓')">
+                        <div class="chat-avatar">👨‍🎓</div>
+                        <div class="chat-content">
+                            <div class="chat-name">Eko Prasetyo</div>
+                            <div class="chat-last-message">Kamera sudah bersih sempurna</div>
+                        </div>
+                        <div class="chat-meta">
+                            <div class="chat-time">5 hari</div>
+                        </div>
+                    </div>
+
+                    <div class="chat-item" onclick="openChatRoom('Joko Widodo', '👨‍🔧')">
+                        <div class="chat-avatar">👨‍🔧</div>
+                        <div class="chat-content">
+                            <div class="chat-name">Joko Widodo</div>
+                            <div class="chat-last-message">TV sudah saya perbaiki dengan baik</div>
+                        </div>
+                        <div class="chat-meta">
+                            <div class="chat-time">1 minggu</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chat Room Page -->
+        <div id="chatRoomPage" class="page hidden">
+            <div class="chat-room-header">
+                <div class="chat-room-avatar" id="chatRoomAvatar">👨‍🔧</div>
+                <div class="chat-room-info">
+                    <h3 id="chatRoomName">Budi Santoso</h3>
+                    <div class="chat-room-status">● Online</div>
+                </div>
+            </div>
+
+            <div class="chat-messages" id="chatMessages">
+                <div class="message received">
+                    <div class="message-avatar">👨‍🔧</div>
+                    <div>
+                        <div class="message-bubble">
+                            Halo, saya Budi. Ada yang bisa saya bantu?
+                        </div>
+                        <div class="message-time">09:15</div>
+                    </div>
+                </div>
+
+                <div class="message sent">
+                    <div>
+                        <div class="message-bubble">
+                            Halo Pak Budi, HP saya tidak bisa charge
+                        </div>
+                        <div class="message-time">09:16</div>
+                    </div>
+                </div>
+
+                <div class="message received">
+                    <div class="message-avatar">👨‍🔧</div>
+                    <div>
+                        <div class="message-bubble">
+                            Baik, kemungkinan masalah di port charging. Saya bisa ke lokasi Anda dalam 30 menit. Alamat lengkapnya dimana?
+                        </div>
+                        <div class="message-time">09:18</div>
+                    </div>
+                </div>
+
+                <div class="message sent">
+                    <div>
+                        <div class="message-bubble">
+                            Jl. Merdeka No. 45, Padalarang
+                        </div>
+                        <div class="message-time">09:19</div>
+                    </div>
+                </div>
+
+                <div class="message received">
+                    <div class="message-avatar">👨‍🔧</div>
+                    <div>
+                        <div class="message-bubble">
+                            Baik, saya segera ke lokasi Anda
+                        </div>
+                        <div class="message-time">10:30</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat-input-container">
+                <input type="text" class="chat-input" id="chatInput" placeholder="Ketik pesan...">
+                <button class="chat-send-btn" onclick="sendMessage()">➤</button>
+            </div>
+        </div>
+
+        <!-- History Page -->
+        <div id="historyPage" class="page hidden">
+            <div class="header">
+                <div class="section-title" style="color: white; margin: 0;">
+                    🕐 Riwayat Pesanan
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="history-item">
+                    <div class="history-header">
+                        <div class="history-date">📅 20 Nov 2024 - 10:30</div>
+                        <div class="status-badge status-ongoing">Berlangsung</div>
+                    </div>
+                    <div class="history-tech">
+                        <div class="history-tech-avatar">👨‍🔧</div>
+                        <div class="history-tech-info">
+                            <div class="history-tech-name">Budi Santoso</div>
+                            <div class="history-service">Servis HP - Port Charging</div>
+                        </div>
+                    </div>
+                    <div class="history-details">
+                        <div class="history-price">Rp 50.000</div>
+                        <button class="review-btn" onclick="showTracking()">Lacak</button>
+                    </div>
+                </div>
+
+                <div class="history-item">
+                    <div class="history-header">
+                        <div class="history-date">📅 18 Nov 2024 - 14:00</div>
+                        <div class="status-badge status-completed">Selesai</div>
+                    </div>
+                    <div class="history-tech">
+                        <div class="history-tech-avatar">👨‍🔬</div>
+                        <div class="history-tech-info">
+                            <div class="history-tech-name">Dedi Kurniawan</div>
+                            <div class="history-service">Servis Laptop - Upgrade RAM</div>
+                        </div>
+                    </div>
+                    <div class="history-details">
+                        <div class="history-price">Rp 75.000 • +10 poin</div>
+                        <button class="review-btn" onclick="showReviewDialog('Dedi Kurniawan')">Ulasan</button>
+                    </div>
+                </div>
+
+                <div class="history-item">
+                    <div class="history-header">
+                        <div class="history-date">📅 15 Nov 2024 - 09:00</div>
+                        <div class="status-badge status-completed">Selesai</div>
+                    </div>
+                    <div class="history-tech">
+                        <div class="history-tech-avatar">👨‍💼</div>
+                        <div class="history-tech-info">
+                            <div class="history-tech-name">Ahmad Rizki</div>
+                            <div class="history-service">Servis HP - Ganti LCD</div>
+                        </div>
+                    </div>
+                    <div class="history-details">
+                        <div class="history-price">Rp 55.000 • +10 poin</div>
+                        <button class="review-btn" style="background: #94a3b8;">Sudah</button>
+                    </div>
+                </div>
+
+                <div class="history-item">
+                    <div class="history-header">
+                        <div class="history-date">📅 10 Nov 2024 - 16:30</div>
+                        <div class="status-badge status-completed">Selesai</div>
+                    </div>
+                    <div class="history-tech">
+                        <div class="history-tech-avatar">👨‍🎓</div>
+                        <div class="history-tech-info">
+                            <div class="history-tech-name">Eko Prasetyo</div>
+                            <div class="history-service">Servis Kamera - Cleaning</div>
+                        </div>
+                    </div>
+                    <div class="history-details">
+                        <div class="history-price">Rp 80.000 • +10 poin</div>
+                        <button class="review-btn" style="background: #94a3b8;">Sudah</button>
+                    </div>
+                </div>
+
+                <div class="history-item">
+                    <div class="history-header">
+                        <div class="history-date">📅 5 Nov 2024 - 11:00</div>
+                        <div class="status-badge status-cancelled">Batal</div>
+                    </div>
+                    <div class="history-tech">
+                        <div class="history-tech-avatar">👨‍💻</div>
+                        <div class="history-tech-info">
+                            <div class="history-tech-name">Rudi Hermawan</div>
+                            <div class="history-service">Servis Laptop - Install OS</div>
+                        </div>
+                    </div>
+                    <div class="history-details">
+                        <div class="history-price" style="color: #991b1b;">Dibatalkan</div>
+                    </div>
+                </div>
+
+                <div class="history-item">
+                    <div class="history-header">
+                        <div class="history-date">📅 1 Nov 2024 - 13:00</div>
+                        <div class="status-badge status-completed">Selesai</div>
+                    </div>
+                    <div class="history-tech">
+                        <div class="history-tech-avatar">👨‍🔧</div>
+                        <div class="history-tech-info">
+                            <div class="history-tech-name">Joko Widodo</div>
+                            <div class="history-service">Servis TV - Perbaikan Audio</div>
+                        </div>
+                    </div>
+                    <div class="history-details">
+                        <div class="history-price">Rp 80.000 • +10 poin</div>
+                        <button class="review-btn" style="background: #94a3b8;">Sudah</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Page -->
+        <div id="profilePage" class="page hidden">
+            <div class="profile-header">
+                <div class="profile-avatar-large">👤</div>
+                <div class="profile-name">Rifa</div>
+                <div class="profile-phone">+6289530348150</div>
+            </div>
+
+            <div class="profile-stats">
+                <div class="stat-card">
+                    <div class="stat-value" id="totalOrders">15</div>
+                    <div class="stat-label">Pesanan</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="profilePoints">150</div>
+                    <div class="stat-label">Poin</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">4.8</div>
+                    <div class="stat-label">Rating</div>
+                </div>
+            </div>
+
+            <div class="profile-menu">
+                <div class="menu-item" onclick="showProfileEdit()">
+                    <div class="menu-icon">✏️</div>
+                    <div class="menu-text">Edit Profil</div>
+                    <div class="menu-arrow">›</div>
+                </div>
+
+                <div class="menu-item" onclick="showAddress()">
+                    <div class="menu-icon">📍</div>
+                    <div class="menu-text">Alamat Saya</div>
+                    <div class="menu-arrow">›</div>
+                </div>
+
+                <div class="menu-item" onclick="showPayment()">
+                    <div class="menu-icon">💳</div>
+                    <div class="menu-text">Metode Pembayaran</div>
+                    <div class="menu-arrow">›</div>
+                </div>
+
+                <div class="menu-item" onclick="switchPage('history')">
+                    <div class="menu-icon">📜</div>
+                    <div class="menu-text">Riwayat Transaksi</div>
+                    <div class="menu-arrow">›</div>
+                </div>
+
+                <div class="menu-item" onclick="showRewards()">
+                    <div class="menu-icon">🎁</div>
+                    <div class="menu-text">Reward & Poin</div>
+                    <div class="menu-arrow">›</div>
+                </div>
+
+                <div class="menu-item" onclick="showHelp()">
+                    <div class="menu-icon">❓</div>
+                    <div class="menu-text">Bantuan</div>
+                    <div class="menu-arrow">›</div>
+                </div>
+
+                <div class="menu-item" onclick="showSettings()">
+                    <div class="menu-icon">⚙️</div>
+                    <div class="menu-text">Pengaturan</div>
+                    <div class="menu-arrow">›</div>
+                </div>
+
+                <div class="menu-item" onclick="logout()">
+                    <div class="menu-icon">🚪</div>
+                    <div class="menu-text">Keluar</div>
+                    <div class="menu-arrow">›</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tracking/GPS Page -->
+        <div id="trackingPage" class="page hidden">
+            <div class="tracking-container">
+                <div class="map-container">
+                    <!-- Map Grid -->
+                    <div class="map-grid"></div>
+                    
+                    <!-- Roads -->
+                    <div class="road road-vertical">
+                        <div class="road-line road-line-v" style="top: 0%;"></div>
+                        <div class="road-line road-line-v" style="top: 20%;"></div>
+                        <div class="road-line road-line-v" style="top: 40%;"></div>
+                        <div class="road-line road-line-v" style="top: 60%;"></div>
+                        <div class="road-line road-line-v" style="top: 80%;"></div>
+                    </div>
+                    <div class="road road-horizontal"></div>
+                    
+                    <!-- Buildings -->
+                    <div class="building" style="width: 60px; height: 60px; top: 15%; left: 15%;"></div>
+                    <div class="building" style="width: 50px; height: 70px; top: 20%; left: 75%;"></div>
+                    <div class="building" style="width: 55px; height: 55px; top: 55%; left: 20%;"></div>
+                    <div class="building" style="width: 65px; height: 60px; top: 60%; left: 70%;"></div>
+                    <div class="building" style="width: 45px; height: 50px; top: 80%; left: 30%;"></div>
+                    
+                    <!-- Route Line -->
+                    <svg style="position: absolute; width: 100%; height: 100%; z-index: 1;">
+                        <path d="M 30% 70% Q 40% 50%, 60% 30%" 
+                              stroke="#3b82f6" 
+                              stroke-width="4" 
+                              fill="none" 
+                              stroke-dasharray="10,5"
+                              opacity="0.6">
+                            <animate attributeName="stroke-dashoffset" 
+                                     from="0" 
+                                     to="30" 
+                                     dur="1s" 
+                                     repeatCount="indefinite"/>
+                        </path>
+                    </svg>
+                    
+                    <!-- Destination Marker -->
+                    <div class="destination-marker">
+                        <div class="destination-pin">📍</div>
+                        <div style="position: absolute; top: -30px; left: 50%; transform: translateX(-50%); background: white; padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: bold; color: #1e40af; white-space: nowrap; box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
+                            Lokasi Anda
+                        </div>
+                    </div>
+                    
+                    <!-- Technician Marker (Motor) -->
+                    <div class="technician-marker">
+                        <div class="motor-icon">🏍️</div>
+                        <div style="position: absolute; top: -30px; left: 50%; transform: translateX(-50%); background: #3b82f6; color: white; padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: bold; white-space: nowrap; box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
+                            Budi Santoso
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tracking Info Card -->
+                <div class="tracking-info-card">
+                    <div class="tech-status">
+                        <div class="tech-status-avatar">👨‍🔧</div>
+                        <div class="tech-status-info">
+                            <div class="tech-status-name">Budi Santoso</div>
+                            <div class="tech-status-eta">ETA: 8 menit • 1.2 km</div>
+                        </div>
+                        <div class="status-arriving">● Dalam Perjalanan</div>
+                    </div>
+                    
+                    <div class="tracking-details">
+                        <div class="tracking-stat">
+                            <div class="tracking-stat-icon">📍</div>
+                            <div class="tracking-stat-value">1.2 km</div>
+                            <div class="tracking-stat-label">Jarak</div>
+                        </div>
+                        <div class="tracking-stat">
+                            <div class="tracking-stat-icon">⏱️</div>
+                            <div class="tracking-stat-value">8 mnt</div>
+                            <div class="tracking-stat-label">Waktu</div>
+                        </div>
+                        <div class="tracking-stat">
+                            <div class="tracking-stat-icon">🏍️</div>
+                            <div class="tracking-stat-value">35 km/h</div>
+                            <div class="tracking-stat-label">Kecepatan</div>
+                        </div>
+                    </div>
+                    
+                    <div class="tracking-actions">
+                        <button class="tracking-btn btn-call" onclick="callTechnician()">
+                            📞 Telepon
+                        </button>
+                        <button class="tracking-btn btn-chat" onclick="openChatRoom('Budi Santoso', '👨‍🔧')">
+                            💬 Chat
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Order Form Page -->
+        <div id="orderFormPage" class="page hidden">
+            <div class="header">
+                <div class="section-title" style="color: white; margin: 0;">
+                    📝 Form Pemesanan
+                </div>
+            </div>
+
+            <div class="order-form-container">
+                <div class="form-header">
+                    <div class="form-header-avatar" id="orderFormAvatar">👨‍🔧</div>
+                    <div class="form-header-info">
+                        <h3 id="orderFormTechName">Budi Santoso</h3>
+                        <div class="form-header-specialty" id="orderFormTechSpecialty">HP & Tablet • 5 tahun</div>
+                    </div>
+                </div>
+
+                <div class="guarantee-note">
+                    🛡️ Garansi 1 Minggu • +10 Poin Loyalty
+                </div>
+
+                <form id="orderForm">
+                    <!-- Alamat -->
+                    <div class="form-group">
+                        <label class="form-label form-label-required">Alamat Lengkap</label>
+                        <textarea class="form-textarea" id="address" placeholder="Masukkan alamat lengkap Anda..." required>Jl. Merdeka No. 45, Padalarang, Jawa Barat</textarea>
+                        <button type="button" class="location-btn" onclick="useCurrentLocation()">
+                            📍 Gunakan Lokasi Saat Ini
+                        </button>
+                    </div>
+
+                    <!-- Gadget -->
+                    <div class="form-group">
+                        <label class="form-label form-label-required">Jenis Gadget</label>
+                        <select class="form-select" id="gadgetType" onchange="updateGadgetOptions()" required>
+                            <option value="">Pilih Jenis Gadget</option>
+                            <option value="hp">HP / Smartphone</option>
+                            <option value="laptop">Laptop / Notebook</option>
+                            <option value="tablet">Tablet</option>
+                            <option value="pc">Komputer / PC</option>
+                            <option value="tv">Televisi</option>
+                            <option value="ac">AC</option>
+                            <option value="kulkas">Kulkas</option>
+                            <option value="mesin-cuci">Mesin Cuci</option>
+                            <option value="kamera">Kamera</option>
+                            <option value="audio">Audio System</option>
+                        </select>
+                    </div>
+
+                    <!-- Merk & Model -->
+                    <div class="form-group">
+                        <label class="form-label form-label-required">Merk & Model</label>
+                        <input type="text" class="form-input" id="gadgetModel" placeholder="Contoh: Samsung Galaxy S23, iPhone 14 Pro" required>
+                    </div>
+
+                    <!-- Tipe Kerusakan -->
+                    <div class="form-group">
+                        <label class="form-label form-label-required">Tipe Kerusakan</label>
+                        <div class="form-radio-group" id="damageTypeGroup">
+                            <div class="form-radio-item">
+                                <input type="radio" class="form-radio-input" name="damageType" id="hardware" value="hardware" onchange="updateDamageOptions()" required>
+                                <label class="form-radio-label" for="hardware">🔧 Hardware</label>
+                            </div>
+                            <div class="form-radio-item">
+                                <input type="radio" class="form-radio-input" name="damageType" id="software" value="software" onchange="updateDamageOptions()">
+                                <label class="form-radio-label" for="software">💻 Software</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Jenis Kerusakan -->
+                    <div class="form-group" id="damageDetailGroup" style="display: none;">
+                        <label class="form-label form-label-required">Jenis Kerusakan</label>
+                        <div class="form-chip-group" id="damageChips">
+                            <!-- Will be populated dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Deskripsi Masalah -->
+                    <div class="form-group">
+                        <label class="form-label">Deskripsi Masalah (Opsional)</label>
+                        <textarea class="form-textarea" id="problemDesc" placeholder="Jelaskan masalah yang Anda alami secara detail..."></textarea>
+                    </div>
+
+                    <!-- Waktu Kunjungan -->
+                    <div class="form-group">
+                        <label class="form-label form-label-required">Waktu Kunjungan</label>
+                        <div class="form-radio-group">
+                            <div class="form-radio-item">
+                                <input type="radio" class="form-radio-input" name="visitTime" id="now" value="now" checked>
+                                <label class="form-radio-label" for="now">⚡ Sekarang</label>
+                            </div>
+                            <div class="form-radio-item">
+                                <input type="radio" class="form-radio-input" name="visitTime" id="schedule" value="schedule">
+                                <label class="form-radio-label" for="schedule">📅 Jadwalkan</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Estimasi Harga -->
+                    <div class="price-estimate-card">
+                        <div class="price-estimate-title">💰 Estimasi Biaya</div>
+                        <div class="price-estimate-row">
+                            <span>Biaya Pemeriksaan</span>
+                            <span id="inspectionFee">Gratis</span>
+                        </div>
+                        <div class="price-estimate-row">
+                            <span>Biaya Servis</span>
+                            <span id="serviceFee">Rp 50.000</span>
+                        </div>
+                        <div class="price-estimate-row">
+                            <span>Biaya Komponen (Estimasi)</span>
+                            <span id="componentFee">Rp 0</span>
+                        </div>
+                        <div class="price-estimate-row">
+                            <span>Diskon</span>
+                            <span id="discount" style="color: #059669;">Rp 0</span>
+                        </div>
+                        <div class="price-estimate-total">
+                            <span>Total Estimasi</span>
+                            <span id="totalPrice">Rp 50.000</span>
+                        </div>
+                        <div style="margin-top: 10px; font-size: 11px; color: #78350f; text-align: center;">
+                            *Harga pasti akan dikonfirmasi setelah pemeriksaan teknisi
+                        </div>
+                    </div>
+
+                    <!-- Submit Buttons -->
+                    <button type="submit" class="form-submit-btn">
+                        ✅ Konfirmasi Pemesanan
+                    </button>
+                    <button type="button" class="form-cancel-btn" onclick="goBack()">
+                        ❌ Batal
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="bottom-nav">
+            <div class="nav-item active" onclick="switchPage('home')">
+                <div class="nav-icon">🏠</div>
+                <div class="nav-text">Home</div>
+            </div>
+            <div class="nav-item" onclick="switchPage('chat')">
+                <div class="nav-icon">💬</div>
+                <div class="nav-text">Chat</div>
+            </div>
+            <div class="nav-item" onclick="switchPage('history')">
+                <div class="nav-icon">🕐</div>
+                <div class="nav-text">Riwayat</div>
+            </div>
+            <div class="nav-item" onclick="switchPage('profile')">
+                <div class="nav-icon">👤</div>
+                <div class="nav-text">Profil</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentPoints = 150;
+        let currentPage = 'home';
+        let currentChatTech = { name: '', avatar: '' };
+        let selectedTech = { name: '', avatar: '', specialty: '', price: 50000 };
+        
+        const damageOptions = {
+            hardware: {
+                hp: ['LCD Pecah', 'Baterai Rusak', 'Port Charging', 'Kamera Error', 'Speaker Mati', 'Tombol Rusak'],
+                laptop: ['Layar Rusak', 'Keyboard Error', 'Touchpad Rusak', 'Port USB Rusak', 'Fan Mati', 'Harddisk Error'],
+                tablet: ['LCD Pecah', 'Baterai Rusak', 'Port Charging', 'Touchscreen Error'],
+                pc: ['Motherboard Error', 'RAM Rusak', 'VGA Error', 'Power Supply', 'Harddisk Rusak'],
+                tv: ['Layar Bergaris', 'No Signal', 'Speaker Rusak', 'HDMI Error', 'Remot Rusak'],
+                ac: ['Tidak Dingin', 'Bocor', 'Kompresor Rusak', 'Freon Habis', 'PCB Error'],
+                kulkas: ['Tidak Dingin', 'Bocor', 'Kompresor Mati', 'Freezer Error'],
+                'mesin-cuci': ['Motor Mati', 'Tidak Berputar', 'Bocor', 'Timer Rusak'],
+                kamera: ['Lensa Rusak', 'Sensor Error', 'Flash Mati', 'Autofocus Error'],
+                audio: ['Speaker Mati', 'No Sound', 'Bluetooth Error', 'Remote Rusak']
+            },
+            software: {
+                hp: ['Bootloop', 'Lag/Lemot', 'Virus', 'Aplikasi Force Close', 'Storage Penuh', 'Update Error'],
+                laptop: ['Install OS', 'Virus', 'Blue Screen', 'Driver Error', 'Aplikasi Error', 'Partition Error'],
+                tablet: ['Bootloop', 'Install OS', 'Aplikasi Error', 'Update Error'],
+                pc: ['Install OS', 'Virus', 'Blue Screen', 'Driver Missing', 'Windows Error'],
+                tv: ['Firmware Update', 'Smart TV Error', 'Netflix Error', 'YouTube Error'],
+                ac: ['Setting Error', 'Remote Programming'],
+                kulkas: ['Setting Suhu', 'Display Error'],
+                'mesin-cuci': ['Program Error', 'Display Error'],
+                kamera: ['Firmware Update', 'Setting Error', 'Memory Card Error'],
+                audio: ['Firmware Update', 'Bluetooth Pairing', 'EQ Setting']
+            }
+        };
+        const technicians = {
+            'HP': [
+                { name: 'Budi Santoso', rating: 4.9, reviews: 234, specialty: 'HP & Tablet', distance: '1.2 km', price: 'Rp 50.000', avatar: '👨‍🔧', experience: '5 tahun' },
+                { name: 'Ahmad Rizki', rating: 4.8, reviews: 189, specialty: 'HP Flagship', distance: '2.5 km', price: 'Rp 55.000', avatar: '👨‍💼', experience: '4 tahun' },
+                { name: 'Eko Prasetyo', rating: 4.7, reviews: 156, specialty: 'HP & Gaming Phone', distance: '3.1 km', price: 'Rp 60.000', avatar: '👨‍🎓', experience: '3 tahun' }
+            ],
+            'Laptop': [
+                { name: 'Dedi Kurniawan', rating: 4.9, reviews: 312, specialty: 'Laptop & PC', distance: '0.8 km', price: 'Rp 75.000', avatar: '👨‍🔬', experience: '6 tahun' },
+                { name: 'Rudi Hermawan', rating: 4.8, reviews: 201, specialty: 'Gaming Laptop', distance: '1.5 km', price: 'Rp 85.000', avatar: '👨‍💻', experience: '5 tahun' },
+                { name: 'Fahmi Abdullah', rating: 4.6, reviews: 178, specialty: 'MacBook Specialist', distance: '2.2 km', price: 'Rp 90.000', avatar: '👨‍🏫', experience: '4 tahun' }
+            ],
+            'Elektronik': [
+                { name: 'Joko Widodo', rating: 4.8, reviews: 267, specialty: 'TV & Audio', distance: '1.0 km', price: 'Rp 80.000', avatar: '👨‍🔧', experience: '7 tahun' },
+                { name: 'Slamet Riyadi', rating: 4.7, reviews: 198, specialty: 'AC & Kulkas', distance: '1.8 km', price: 'Rp 100.000', avatar: '👨‍🏭', experience: '8 tahun' },
+                { name: 'Agus Salim', rating: 4.9, reviews: 223, specialty: 'Mesin Cuci', distance: '2.4 km', price: 'Rp 70.000', avatar: '👨‍🔧', experience: '6 tahun' }
+            ],
+            'Kamera': [
+                { name: 'Bambang Kusuma', rating: 4.9, reviews: 189, specialty: 'DSLR & Mirrorless', distance: '1.3 km', price: 'Rp 95.000', avatar: '👨‍🎨', experience: '5 tahun' },
+                { name: 'Hendra Gunawan', rating: 4.7, reviews: 156, specialty: 'Camera Lens', distance: '2.0 km', price: 'Rp 85.000', avatar: '📸', experience: '4 tahun' },
+                { name: 'Rizal Fauzi', rating: 4.8, reviews: 167, specialty: 'Action Camera', distance: '2.7 km', price: 'Rp 75.000', avatar: '👨‍💼', experience: '3 tahun' }
+            ]
+        };
+
+        function showTechnicians(category) {
+            hideAllPages();
+            document.getElementById('technicianPage').classList.remove('hidden');
+            document.getElementById('backButton').classList.remove('hidden');
+            document.getElementById('categoryTitle').textContent = `Teknisi ${category}`;
+            currentPage = 'technician';
+
+            const techList = document.getElementById('technicianList');
+            techList.innerHTML = '';
+
+            technicians[category].forEach(tech => {
+                const card = document.createElement('div');
+                card.className = 'technician-card';
+                card.innerHTML = `
+                    <div class="tech-header">
+                        <div class="tech-avatar">${tech.avatar}</div>
+                        <div class="tech-info">
+                            <div class="tech-name">${tech.name}</div>
+                            <div class="tech-rating">
+                                ⭐ ${tech.rating} (${tech.reviews} ulasan)
+                            </div>
+                            <div class="tech-specialty">${tech.specialty} • ${tech.experience}</div>
+                        </div>
+                    </div>
+                    <div class="tech-details">
+                        <div class="tech-distance">📍 ${tech.distance}</div>
+                        <div class="tech-price">${tech.price}</div>
+                    </div>
+                    <button class="order-button" onclick="showOrderForm('${tech.name}', '${tech.avatar}', '${tech.specialty}', '${tech.price}')">Pesan Sekarang</button>
+                `;
+                techList.appendChild(card);
+            });
+        }
+
+        function showOrderForm(techName, avatar, specialty, price) {
+            hideAllPages();
+            currentPage = 'orderForm';
+            
+            // Store selected technician data
+            selectedTech = {
+                name: techName,
+                avatar: avatar,
+                specialty: specialty,
+                price: parseInt(price.replace(/\D/g, ''))
+            };
+            
+            // Update form header
+            document.getElementById('orderFormAvatar').textContent = avatar;
+            document.getElementById('orderFormTechName').textContent = techName;
+            document.getElementById('orderFormTechSpecialty').textContent = specialty;
+            document.getElementById('serviceFee').textContent = price;
+            document.getElementById('totalPrice').textContent = price;
+            
+            document.getElementById('orderFormPage').classList.remove('hidden');
+            document.getElementById('backButton').classList.remove('hidden');
+        }
+
+        function updateGadgetOptions() {
+            const gadgetType = document.getElementById('gadgetType').value;
+            if (gadgetType) {
+                document.getElementById('damageTypeGroup').style.display = 'grid';
+            }
+        }
+
+        function updateDamageOptions() {
+            const gadgetType = document.getElementById('gadgetType').value;
+            const damageType = document.querySelector('input[name="damageType"]:checked')?.value;
+            
+            if (gadgetType && damageType) {
+                const options = damageOptions[damageType][gadgetType] || [];
+                const chipsContainer = document.getElementById('damageChips');
+                chipsContainer.innerHTML = '';
+                
+                options.forEach(option => {
+                    const chip = document.createElement('div');
+                    chip.className = 'form-chip';
+                    chip.textContent = option;
+                    chip.onclick = function() {
+                        document.querySelectorAll('.form-chip').forEach(c => c.classList.remove('active'));
+                        this.classList.add('active');
+                        updatePriceEstimate(option);
+                    };
+                    chipsContainer.appendChild(chip);
+                });
+                
+                document.getElementById('damageDetailGroup').style.display = 'block';
+            }
+        }
+
+        function updatePriceEstimate(damageDetail) {
+            let componentFee = 0;
+            
+            // Estimate component prices based on damage type
+            const expensiveDamages = ['LCD Pecah', 'Layar Rusak', 'Baterai Rusak', 'Motherboard Error', 'Kompresor Rusak'];
+            const moderateDamages = ['Port Charging', 'Speaker Mati', 'Keyboard Error', 'Kamera Error'];
+            
+            if (expensiveDamages.some(d => damageDetail.includes(d))) {
+                componentFee = 200000;
+            } else if (moderateDamages.some(d => damageDetail.includes(d))) {
+                componentFee = 75000;
+            } else {
+                componentFee = 0;
+            }
+            
+            const serviceFee = selectedTech.price;
+            const total = serviceFee + componentFee;
+            
+            document.getElementById('componentFee').textContent = 'Rp ' + componentFee.toLocaleString('id-ID');
+            document.getElementById('totalPrice').textContent = 'Rp ' + total.toLocaleString('id-ID');
+        }
+
+        function useCurrentLocation() {
+            alert('📍 Menggunakan lokasi saat ini...\n\nJl. Merdeka No. 45, Padalarang, Jawa Barat\n\nLokasi berhasil dideteksi!');
+        }
+
+        document.getElementById('orderForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const address = document.getElementById('address').value;
+            const gadgetType = document.getElementById('gadgetType').value;
+            const gadgetModel = document.getElementById('gadgetModel').value;
+            const selectedDamage = document.querySelector('.form-chip.active')?.textContent;
+            const totalPrice = document.getElementById('totalPrice').textContent;
+            
+            if (!gadgetType) {
+                alert('⚠️ Mohon pilih jenis gadget!');
+                return;
+            }
+            
+            if (!document.querySelector('input[name="damageType"]:checked')) {
+                alert('⚠️ Mohon pilih tipe kerusakan!');
+                return;
+            }
+            
+            if (!selectedDamage) {
+                alert('⚠️ Mohon pilih jenis kerusakan!');
+                return;
+            }
+            
+            currentPoints += 10;
+            document.getElementById('pointsDisplay').textContent = currentPoints;
+            document.getElementById('profilePoints').textContent = currentPoints;
+            
+            alert(`✅ Pemesanan Berhasil!\n\n👨‍🔧 Teknisi: ${selectedTech.name}\n📍 Alamat: ${address}\n📱 Gadget: ${gadgetModel}\n🔧 Kerusakan: ${selectedDamage}\n💰 Total: ${totalPrice}\n\n🎁 +10 poin loyalty!\n🛡️ Garansi 1 minggu\n\nTeknisi akan segera menghubungi Anda!`);
+            
+            // Redirect to tracking page
+            setTimeout(() => {
+                showTracking();
+            }, 1000);
+        });
+
+        function hideAllPages() {
+            document.getElementById('homePage').classList.add('hidden');
+            document.getElementById('technicianPage').classList.add('hidden');
+            document.getElementById('chatListPage').classList.add('hidden');
+            document.getElementById('chatRoomPage').classList.add('hidden');
+            document.getElementById('historyPage').classList.add('hidden');
+            document.getElementById('profilePage').classList.add('hidden');
+            document.getElementById('trackingPage').classList.add('hidden');
+            document.getElementById('orderFormPage').classList.add('hidden');
+            document.getElementById('backButton').classList.add('hidden');
+            
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+        }
+
+        function switchPage(page) {
+            hideAllPages();
+            currentPage = page;
+
+            const navItems = document.querySelectorAll('.nav-item');
+            
+            switch(page) {
+                case 'home':
+                    document.getElementById('homePage').classList.remove('hidden');
+                    navItems[0].classList.add('active');
+                    break;
+                case 'chat':
+                    document.getElementById('chatListPage').classList.remove('hidden');
+                    document.getElementById('backButton').classList.remove('hidden');
+                    navItems[1].classList.add('active');
+                    break;
+                case 'history':
+                    document.getElementById('historyPage').classList.remove('hidden');
+                    document.getElementById('backButton').classList.remove('hidden');
+                    navItems[2].classList.add('active');
+                    break;
+                case 'profile':
+                    document.getElementById('profilePage').classList.remove('hidden');
+                    document.getElementById('backButton').classList.remove('hidden');
+                    navItems[3].classList.add('active');
+                    break;
+            }
+        }
+
+        function goBack() {
+            if (currentPage === 'chatRoom') {
+                switchPage('chat');
+            } else if (currentPage === 'tracking') {
+                switchPage('history');
+            } else if (currentPage === 'orderForm') {
+                hideAllPages();
+                document.getElementById('technicianPage').classList.remove('hidden');
+                document.getElementById('backButton').classList.remove('hidden');
+                currentPage = 'technician';
+            } else {
+                switchPage('home');
+            }
+        }
+
+        function openChatRoom(techName, avatar) {
+            hideAllPages();
+            currentPage = 'chatRoom';
+            currentChatTech = { name: techName, avatar: avatar };
+            
+            document.getElementById('chatRoomPage').classList.remove('hidden');
+            document.getElementById('backButton').classList.remove('hidden');
+            document.getElementById('chatRoomName').textContent = techName;
+            document.getElementById('chatRoomAvatar').textContent = avatar;
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            
+            if (message) {
+                const messagesContainer = document.getElementById('chatMessages');
+                const now = new Date();
+                const time = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
+                
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'message sent';
+                messageDiv.innerHTML = `
+                    <div>
+                        <div class="message-bubble">${message}</div>
+                        <div class="message-time">${time}</div>
+                    </div>
+                `;
+                
+                messagesContainer.appendChild(messageDiv);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                input.value = '';
+                
+                setTimeout(() => {
+                    const replyDiv = document.createElement('div');
+                    replyDiv.className = 'message received';
+                    replyDiv.innerHTML = `
+                        <div class="message-avatar">${currentChatTech.avatar}</div>
+                        <div>
+                            <div class="message-bubble">Baik, saya akan segera menanganinya. Terima kasih!</div>
+                            <div class="message-time">${time}</div>
+                        </div>
+                    `;
+                    messagesContainer.appendChild(replyDiv);
+                    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                }, 1500);
+            }
+        }
+
+        function showReviewDialog(techName) {
+            alert(`⭐ Beri Rating untuk ${techName}\n\nKualitas Servis: ⭐⭐⭐⭐⭐\nKetepatan Waktu: ⭐⭐⭐⭐⭐\nSikap Ramah: ⭐⭐⭐⭐⭐\n\nTerima kasih atas review Anda!`);
+        }
+
+        function showProfileEdit() {
+            alert('✏️ Edit Profil\n\nNama: Rifa\nEmail: rifa@email.com\nNo. HP: +6289530348150\nAlamat: Jl. Merdeka No. 45, Padalarang');
+        }
+
+        function showAddress() {
+            alert('📍 Alamat Saya\n\nAlamat Utama:\nJl. Merdeka No. 45\nPadalarang, Jawa Barat\n40553\n\n+ Tambah Alamat Baru');
+        }
+
+        function showPayment() {
+            alert('💳 Metode Pembayaran\n\n✓ BCA - 1234567890\n✓ GoPay - 089530348150\n✓ OVO - 089530348150\n\n+ Tambah Metode Baru');
+        }
+
+        function showRewards() {
+            alert(`🎁 Reward & Poin\n\nTotal Poin Anda: ${currentPoints}\n\n💎 Reward Tersedia:\n• 50 poin = Diskon Rp 25.000\n• 100 poin = Diskon Rp 50.000\n• 200 poin = Gratis 1x servis\n\nKumpulkan lebih banyak poin!`);
+        }
+
+        function showHelp() {
+            alert('❓ Bantuan\n\n📞 Customer Service:\n0812-3456-7890\n\n📧 Email:\nsupport@electrocare.com\n\n⏰ Jam Operasional:\nSenin - Minggu\n08:00 - 20:00 WIB');
+        }
+
+        function showSettings() {
+            alert('⚙️ Pengaturan\n\n🔔 Notifikasi: Aktif\n🌙 Mode Gelap: Nonaktif\n🗣️ Bahasa: Indonesia\n📱 Versi: 1.0.0');
+        }
+
+        function logout() {
+            if(confirm('Yakin ingin keluar dari ElectroCare?')) {
+                alert('Terima kasih telah menggunakan ElectroCare!\n\nSampai jumpa lagi! 👋');
+            }
+        }
+
+        function showTracking() {
+            hideAllPages();
+            currentPage = 'tracking';
+            document.getElementById('trackingPage').classList.remove('hidden');
+            document.getElementById('backButton').classList.remove('hidden');
+        }
+
+        function callTechnician() {
+            if(confirm('Hubungi Budi Santoso?\n\n📞 0812-3456-7890')) {
+                alert('☎️ Memanggil teknisi...\n\nAnda akan segera terhubung dengan Budi Santoso');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatInput = document.getElementById('chatInput');
+            if (chatInput) {
+                chatInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        sendMessage();
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
