@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ElectroCare - Layanan Servis Elektronik</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <style>
+        /* Gaya CSS yang ada disisipkan di sini untuk fungsionalitas */
         * {
             margin: 0;
             padding: 0;
@@ -92,6 +94,12 @@
             justify-content: center;
             font-size: 24px;
         }
+        .user-avatar i, .chat-avatar i, .message-avatar i, .history-tech-avatar i, .profile-avatar-large i, .form-header-avatar i {
+            color: white;
+        }
+        .logo-icon i {
+            color: #2563eb;
+        }
 
         .user-details {
             flex: 1;
@@ -128,6 +136,43 @@
             gap: 10px;
             padding: 15px;
         }
+        
+        /* New: Sub-Category List Styling */
+        .sub-category-list {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            padding: 15px;
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .sub-category-card {
+            background: #f1f5f9;
+            border-radius: 12px;
+            padding: 10px 5px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .sub-category-card:hover {
+            border-color: #3b82f6;
+            background: #eff6ff;
+        }
+
+        .sub-category-icon {
+            font-size: 28px;
+            margin-bottom: 5px;
+            color: #2563eb;
+        }
+
+        .sub-category-name {
+            color: #1e40af;
+            font-size: 10px;
+            font-weight: 600;
+        }
 
         .category-card {
             background: white;
@@ -148,6 +193,7 @@
         .category-icon {
             font-size: 32px;
             margin-bottom: 8px;
+            color: #2563eb; /* Warna ikon kategori */
         }
 
         .category-name {
@@ -222,6 +268,9 @@
         .guarantee-icon {
             font-size: 40px;
             margin-bottom: 8px;
+        }
+        .guarantee-icon i {
+            color: white;
         }
 
         .guarantee-text {
@@ -324,6 +373,15 @@
             margin-bottom: 4px;
             font-size: 13px;
         }
+        
+        /* New: Portofolio/Specialist Info */
+        .tech-portofolio {
+            color: #10b981;
+            font-size: 12px;
+            margin-top: 5px;
+            font-style: italic;
+        }
+
 
         .tech-specialty {
             color: #64748b;
@@ -417,6 +475,11 @@
         .chat-avatar {
             font-size: 40px;
             min-width: 40px;
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .chat-content {
@@ -472,6 +535,16 @@
 
         .chat-room-avatar {
             font-size: 36px;
+            background: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .chat-room-avatar i {
+            color: #2563eb;
         }
 
         .chat-room-info h3 {
@@ -486,7 +559,7 @@
 
         .chat-messages {
             padding: 15px;
-            height: calc(100vh - 200px);
+            height: calc(100vh - 120px - 70px); /* Header + Input - Nav */
             overflow-y: auto;
             display: flex;
             flex-direction: column;
@@ -534,7 +607,7 @@
 
         .chat-input-container {
             position: fixed;
-            bottom: 0;
+            bottom: 60px; /* Di atas bottom-nav */
             left: 50%;
             transform: translateX(-50%);
             max-width: 480px;
@@ -572,6 +645,57 @@
 
         .chat-send-btn:hover {
             transform: scale(1.1);
+        }
+
+        .price-offer-card {
+            background: #ffffff;
+            border: 2px solid #f59e0b;
+            border-radius: 10px;
+            padding: 10px;
+            margin-top: 8px;
+            max-width: 100%;
+        }
+
+        .offer-title {
+            color: #f59e0b;
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .offer-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            margin-bottom: 3px;
+            color: #64748b;
+        }
+
+        .offer-total {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 5px;
+            margin-top: 5px;
+            border-top: 1px solid #ffe8b5;
+            font-weight: bold;
+            font-size: 13px;
+            color: #1e40af;
+        }
+        
+        .offer-button {
+            background: #f59e0b;
+            color: white;
+            border: none;
+            padding: 8px;
+            border-radius: 6px;
+            margin-top: 8px;
+            width: 100%;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
         }
 
         /* History Styles */
@@ -631,6 +755,11 @@
         .history-tech-avatar {
             font-size: 32px;
             min-width: 32px;
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .history-tech-info {
@@ -761,6 +890,7 @@
         .menu-icon {
             font-size: 22px;
             min-width: 22px;
+            color: #2563eb;
         }
 
         .menu-text {
@@ -785,6 +915,7 @@
         .loyalty-icon {
             font-size: 36px;
             margin-bottom: 8px;
+            color: #f59e0b;
         }
 
         .loyalty-title {
@@ -889,6 +1020,7 @@
             font-size: 48px;
             filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
             animation: motorBounce 0.5s ease-in-out infinite alternate;
+            color: #2563eb;
         }
 
         @keyframes motorBounce {
@@ -918,6 +1050,7 @@
         .destination-pin {
             font-size: 40px;
             filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+            color: #ef4444;
         }
 
         .tracking-info-card {
@@ -988,6 +1121,7 @@
         .tracking-stat-icon {
             font-size: 20px;
             margin-bottom: 4px;
+            color: #2563eb;
         }
 
         .tracking-stat-value {
@@ -1069,6 +1203,16 @@
 
         .form-header-avatar {
             font-size: 40px;
+            background: white;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .form-header-avatar i {
+             color: #2563eb;
         }
 
         .form-header-info h3 {
@@ -1166,6 +1310,7 @@
             cursor: pointer;
             transition: all 0.3s;
             background: white;
+            white-space: nowrap;
         }
 
         .form-chip.active {
@@ -1341,63 +1486,97 @@
 </head>
 <body>
     <div class="container">
-        <!-- Back Button -->
         <div class="back-button hidden" id="backButton" onclick="goBack()">
-            ←
+            <i class='bx bx-arrow-back'></i>
         </div>
 
-        <!-- Home Page -->
         <div id="homePage" class="page">
             <div class="header">
                 <div class="logo">
-                    <div class="logo-icon">🔧</div>
+                    <div class="logo-icon"><i class='bx bx-wrench'></i></div>
                     <div class="logo-text">ELECTRO<span style="color: #60a5fa;">CARE</span></div>
                 </div>
                 <div class="search-bar">
-                    <span>🔍</span>
+                    <i class='bx bx-search'></i>
                     <input type="text" placeholder="Mau berencana apa hari ini?">
                 </div>
             </div>
 
             <div class="user-info">
-                <div class="user-avatar">👤</div>
+                <div class="user-avatar"><i class='bx bx-user'></i></div>
                 <div class="user-details">
                     <h2>Halo Rifa!</h2>
                     <div class="user-phone">+6289530348150</div>
                 </div>
                 <div class="points-badge">
-                    ⭐ <span id="pointsDisplay">150</span>
+                    <i class='bx bxs-star'></i> <span id="pointsDisplay">150</span>
                 </div>
             </div>
 
             <div class="categories">
                 <div class="category-card" onclick="showTechnicians('HP')">
-                    <div class="category-icon">📱</div>
+                    <div class="category-icon"><i class='bx bx-mobile-alt'></i></div>
                     <div class="category-name">HP</div>
                 </div>
                 <div class="category-card" onclick="showTechnicians('Laptop')">
-                    <div class="category-icon">💻</div>
+                    <div class="category-icon"><i class='bx bx-laptop'></i></div>
                     <div class="category-name">Laptop</div>
                 </div>
-                <div class="category-card" onclick="showTechnicians('Elektronik')">
-                    <div class="category-icon">⚡</div>
-                    <div class="category-name">Elektronik</div>
+                <div class="category-card" onclick="showSubCategories('RumahTangga')">
+                    <div class="category-icon"><i class='bx bx-home-alt'></i></div>
+                    <div class="category-name">Rmh. Tangga</div>
                 </div>
                 <div class="category-card" onclick="showTechnicians('Kamera')">
-                    <div class="category-icon">📷</div>
+                    <div class="category-icon"><i class='bx bx-camera'></i></div>
                     <div class="category-name">Kamera</div>
                 </div>
             </div>
 
+            <div id="subCategoryList" class="sub-category-list hidden">
+                <div class="sub-category-card" onclick="showTechnicians('TV')">
+                    <div class="sub-category-icon"><i class='bx bx-tv'></i></div>
+                    <div class="sub-category-name">TV</div>
+                </div>
+                <div class="sub-category-card" onclick="showTechnicians('AC')">
+                    <div class="sub-category-icon"><i class='bx bxs-thermometer'></i></div>
+                    <div class="sub-category-name">AC</div>
+                </div>
+                <div class="sub-category-card" onclick="showTechnicians('Kulkas')">
+                    <div class="sub-category-icon"><i class='bx bxs-fridge'></i></div>
+                    <div class="sub-category-name">Kulkas</div>
+                </div>
+                <div class="sub-category-card" onclick="showTechnicians('MesinCuci')">
+                    <div class="sub-category-icon"><i class='bx bx-washer'></i></div>
+                    <div class="sub-category-name">M. Cuci</div>
+                </div>
+                <div class="sub-category-card" onclick="showTechnicians('Audio')">
+                    <div class="sub-category-icon"><i class='bx bx-speaker'></i></div>
+                    <div class="sub-category-name">Audio</div>
+                </div>
+                <div class="sub-category-card" onclick="showTechnicians('Setrika')">
+                    <div class="sub-category-icon"><i class='bx bxs-hot'></i></div>
+                    <div class="sub-category-name">Setrika</div>
+                </div>
+                <div class="sub-category-card" onclick="showTechnicians('PC')">
+                    <div class="sub-category-icon"><i class='bx bx-desktop'></i></div>
+                    <div class="sub-category-name">Komputer</div>
+                </div>
+                <div class="sub-category-card" onclick="showTechnicians('Lainnya')">
+                    <div class="sub-category-icon"><i class='bx bx-dots-horizontal-rounded'></i></div>
+                    <div class="sub-category-name">Lainnya</div>
+                </div>
+            </div>
+
+
             <div class="guarantee-banner">
-                <div class="guarantee-icon">🛡️</div>
+                <div class="guarantee-icon"><i class='bx bx-shield-alt-2'></i></div>
                 <div class="guarantee-text">GARANSI 1 MINGGU</div>
                 <div class="guarantee-subtext">Jaminan kualitas untuk setiap servis</div>
             </div>
 
             <div class="section">
                 <div class="section-title">
-                    🎁 PROMO SPESIAL
+                    <i class='bx bxs-gift'></i> PROMO SPESIAL
                 </div>
                 <div class="promo-cards">
                     <div class="promo-card">
@@ -1420,10 +1599,10 @@
 
             <div class="section">
                 <div class="section-title">
-                    🏆 Bonus Poin Loyalty
+                    <i class='bx bxs-trophy'></i> Bonus Poin Loyalty
                 </div>
                 <div class="loyalty-section">
-                    <div class="loyalty-icon">🎯</div>
+                    <div class="loyalty-icon"><i class='bx bxs-badge-check'></i></div>
                     <div class="loyalty-title">Kumpulkan poin setiap pemesanan!</div>
                     <div class="loyalty-text">
                         • 10 poin per servis<br>
@@ -1435,33 +1614,30 @@
             </div>
         </div>
 
-        <!-- Technician List Page -->
         <div id="technicianPage" class="page hidden">
             <div class="header">
                 <div class="section-title" style="color: white; margin: 0;">
-                    <span id="categoryTitle">Pilih Teknisi</span>
+                    <i class='bx bx-group'></i> <span id="categoryTitle">Pilih Teknisi</span>
                 </div>
             </div>
 
             <div class="section">
                 <div class="technician-list" id="technicianList">
-                    <!-- Technicians will be inserted here -->
-                </div>
+                    </div>
             </div>
         </div>
 
-        <!-- Chat List Page -->
         <div id="chatListPage" class="page hidden">
             <div class="header">
                 <div class="section-title" style="color: white; margin: 0;">
-                    💬 Pesan
+                    <i class='bx bxs-message-dots'></i> Pesan
                 </div>
             </div>
 
             <div class="section">
-                <div class="chat-list">
-                    <div class="chat-item" onclick="openChatRoom('Budi Santoso', '👨‍🔧')">
-                        <div class="chat-avatar">👨‍🔧</div>
+                <div class="chat-list" id="chatList">
+                    <div class="chat-item" onclick="openChatRoom('Budi Santoso', 'bx-hard-hat', 'Baik, saya segera ke lokasi Anda', '10:30', 2, '20 Nov 2024 - 10:30')">
+                        <div class="chat-avatar"><i class='bx bx-hard-hat'></i></div>
                         <div class="chat-content">
                             <div class="chat-name">Budi Santoso</div>
                             <div class="chat-last-message">Baik, saya segera ke lokasi Anda</div>
@@ -1472,8 +1648,8 @@
                         </div>
                     </div>
 
-                    <div class="chat-item" onclick="openChatRoom('Ahmad Rizki', '👨‍💼')">
-                        <div class="chat-avatar">👨‍💼</div>
+                    <div class="chat-item" onclick="openChatRoom('Ahmad Rizki', 'bx-user-pin', 'Terima kasih, semoga awet ya!', 'Kemarin', 0, '15 Nov 2024 - 09:00')">
+                        <div class="chat-avatar"><i class='bx bx-user-pin'></i></div>
                         <div class="chat-content">
                             <div class="chat-name">Ahmad Rizki</div>
                             <div class="chat-last-message">Terima kasih, semoga awet ya!</div>
@@ -1483,46 +1659,13 @@
                         </div>
                     </div>
 
-                    <div class="chat-item" onclick="openChatRoom('Dedi Kurniawan', '👨‍🔬')">
-                        <div class="chat-avatar">👨‍🔬</div>
-                        <div class="chat-content">
-                            <div class="chat-name">Dedi Kurniawan</div>
-                            <div class="chat-last-message">Laptop sudah selesai diperbaiki</div>
-                        </div>
-                        <div class="chat-meta">
-                            <div class="chat-time">2 hari</div>
-                        </div>
                     </div>
-
-                    <div class="chat-item" onclick="openChatRoom('Eko Prasetyo', '👨‍🎓')">
-                        <div class="chat-avatar">👨‍🎓</div>
-                        <div class="chat-content">
-                            <div class="chat-name">Eko Prasetyo</div>
-                            <div class="chat-last-message">Kamera sudah bersih sempurna</div>
-                        </div>
-                        <div class="chat-meta">
-                            <div class="chat-time">5 hari</div>
-                        </div>
-                    </div>
-
-                    <div class="chat-item" onclick="openChatRoom('Joko Widodo', '👨‍🔧')">
-                        <div class="chat-avatar">👨‍🔧</div>
-                        <div class="chat-content">
-                            <div class="chat-name">Joko Widodo</div>
-                            <div class="chat-last-message">TV sudah saya perbaiki dengan baik</div>
-                        </div>
-                        <div class="chat-meta">
-                            <div class="chat-time">1 minggu</div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
 
-        <!-- Chat Room Page -->
         <div id="chatRoomPage" class="page hidden">
             <div class="chat-room-header">
-                <div class="chat-room-avatar" id="chatRoomAvatar">👨‍🔧</div>
+                <div class="chat-room-avatar" id="chatRoomAvatar"><i class='bx bx-hard-hat'></i></div>
                 <div class="chat-room-info">
                     <h3 id="chatRoomName">Budi Santoso</h3>
                     <div class="chat-room-status">● Online</div>
@@ -1531,7 +1674,7 @@
 
             <div class="chat-messages" id="chatMessages">
                 <div class="message received">
-                    <div class="message-avatar">👨‍🔧</div>
+                    <div class="message-avatar"><i class='bx bx-hard-hat'></i></div>
                     <div>
                         <div class="message-bubble">
                             Halo, saya Budi. Ada yang bisa saya bantu?
@@ -1539,181 +1682,72 @@
                         <div class="message-time">09:15</div>
                     </div>
                 </div>
-
-                <div class="message sent">
-                    <div>
-                        <div class="message-bubble">
-                            Halo Pak Budi, HP saya tidak bisa charge
-                        </div>
-                        <div class="message-time">09:16</div>
-                    </div>
-                </div>
-
-                <div class="message received">
-                    <div class="message-avatar">👨‍🔧</div>
-                    <div>
-                        <div class="message-bubble">
-                            Baik, kemungkinan masalah di port charging. Saya bisa ke lokasi Anda dalam 30 menit. Alamat lengkapnya dimana?
-                        </div>
-                        <div class="message-time">09:18</div>
-                    </div>
-                </div>
-
-                <div class="message sent">
-                    <div>
-                        <div class="message-bubble">
-                            Jl. Merdeka No. 45, Padalarang
-                        </div>
-                        <div class="message-time">09:19</div>
-                    </div>
-                </div>
-
-                <div class="message received">
-                    <div class="message-avatar">👨‍🔧</div>
-                    <div>
-                        <div class="message-bubble">
-                            Baik, saya segera ke lokasi Anda
-                        </div>
-                        <div class="message-time">10:30</div>
-                    </div>
-                </div>
             </div>
 
             <div class="chat-input-container">
                 <input type="text" class="chat-input" id="chatInput" placeholder="Ketik pesan...">
-                <button class="chat-send-btn" onclick="sendMessage()">➤</button>
+                <button class="chat-send-btn" onclick="sendMessage()"><i class='bx bx-send'></i></button>
             </div>
         </div>
 
-        <!-- History Page -->
         <div id="historyPage" class="page hidden">
             <div class="header">
                 <div class="section-title" style="color: white; margin: 0;">
-                    🕐 Riwayat Pesanan
+                    <i class='bx bx-history'></i> Riwayat Pesanan
                 </div>
             </div>
 
             <div class="section">
-                <div class="history-item">
-                    <div class="history-header">
-                        <div class="history-date">📅 20 Nov 2024 - 10:30</div>
-                        <div class="status-badge status-ongoing">Berlangsung</div>
-                    </div>
-                    <div class="history-tech">
-                        <div class="history-tech-avatar">👨‍🔧</div>
-                        <div class="history-tech-info">
-                            <div class="history-tech-name">Budi Santoso</div>
-                            <div class="history-service">Servis HP - Port Charging</div>
+                <div id="historyList">
+                    <div class="history-item" data-tech-name="Budi Santoso" data-service-type="Servis HP - Port Charging" data-status="ongoing" data-price="Rp 50.000" data-avatar="bx-hard-hat">
+                        <div class="history-header">
+                            <div class="history-date"><i class='bx bx-calendar'></i> 20 Nov 2024 - 10:30</div>
+                            <div class="status-badge status-ongoing">Berlangsung</div>
+                        </div>
+                        <div class="history-tech">
+                            <div class="history-tech-avatar"><i class='bx bx-hard-hat'></i></div>
+                            <div class="history-tech-info">
+                                <div class="history-tech-name">Budi Santoso</div>
+                                <div class="history-service">Servis HP - Port Charging</div>
+                            </div>
+                        </div>
+                        <div class="history-details">
+                            <div class="history-price">Rp 50.000</div>
+                            <button class="review-btn" onclick="showTracking('Budi Santoso', 'bx-hard-hat')">Lacak</button>
                         </div>
                     </div>
-                    <div class="history-details">
-                        <div class="history-price">Rp 50.000</div>
-                        <button class="review-btn" onclick="showTracking()">Lacak</button>
-                    </div>
-                </div>
 
-                <div class="history-item">
-                    <div class="history-header">
-                        <div class="history-date">📅 18 Nov 2024 - 14:00</div>
-                        <div class="status-badge status-completed">Selesai</div>
-                    </div>
-                    <div class="history-tech">
-                        <div class="history-tech-avatar">👨‍🔬</div>
-                        <div class="history-tech-info">
-                            <div class="history-tech-name">Dedi Kurniawan</div>
-                            <div class="history-service">Servis Laptop - Upgrade RAM</div>
+                    <div class="history-item">
+                        <div class="history-header">
+                            <div class="history-date"><i class='bx bx-calendar'></i> 18 Nov 2024 - 14:00</div>
+                            <div class="status-badge status-completed">Selesai</div>
                         </div>
-                    </div>
-                    <div class="history-details">
-                        <div class="history-price">Rp 75.000 • +10 poin</div>
-                        <button class="review-btn" onclick="showReviewDialog('Dedi Kurniawan')">Ulasan</button>
-                    </div>
-                </div>
-
-                <div class="history-item">
-                    <div class="history-header">
-                        <div class="history-date">📅 15 Nov 2024 - 09:00</div>
-                        <div class="status-badge status-completed">Selesai</div>
-                    </div>
-                    <div class="history-tech">
-                        <div class="history-tech-avatar">👨‍💼</div>
-                        <div class="history-tech-info">
-                            <div class="history-tech-name">Ahmad Rizki</div>
-                            <div class="history-service">Servis HP - Ganti LCD</div>
+                        <div class="history-tech">
+                            <div class="history-tech-avatar"><i class='bx bx-microscope'></i></div>
+                            <div class="history-tech-info">
+                                <div class="history-tech-name">Dedi Kurniawan</div>
+                                <div class="history-service">Servis Laptop - Upgrade RAM</div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="history-details">
-                        <div class="history-price">Rp 55.000 • +10 poin</div>
-                        <button class="review-btn" style="background: #94a3b8;">Sudah</button>
-                    </div>
-                </div>
-
-                <div class="history-item">
-                    <div class="history-header">
-                        <div class="history-date">📅 10 Nov 2024 - 16:30</div>
-                        <div class="status-badge status-completed">Selesai</div>
-                    </div>
-                    <div class="history-tech">
-                        <div class="history-tech-avatar">👨‍🎓</div>
-                        <div class="history-tech-info">
-                            <div class="history-tech-name">Eko Prasetyo</div>
-                            <div class="history-service">Servis Kamera - Cleaning</div>
+                        <div class="history-details">
+                            <div class="history-price">Rp 75.000 • +10 poin</div>
+                            <button class="review-btn" onclick="showReviewDialog('Dedi Kurniawan')">Ulasan</button>
                         </div>
-                    </div>
-                    <div class="history-details">
-                        <div class="history-price">Rp 80.000 • +10 poin</div>
-                        <button class="review-btn" style="background: #94a3b8;">Sudah</button>
-                    </div>
-                </div>
-
-                <div class="history-item">
-                    <div class="history-header">
-                        <div class="history-date">📅 5 Nov 2024 - 11:00</div>
-                        <div class="status-badge status-cancelled">Batal</div>
-                    </div>
-                    <div class="history-tech">
-                        <div class="history-tech-avatar">👨‍💻</div>
-                        <div class="history-tech-info">
-                            <div class="history-tech-name">Rudi Hermawan</div>
-                            <div class="history-service">Servis Laptop - Install OS</div>
-                        </div>
-                    </div>
-                    <div class="history-details">
-                        <div class="history-price" style="color: #991b1b;">Dibatalkan</div>
-                    </div>
-                </div>
-
-                <div class="history-item">
-                    <div class="history-header">
-                        <div class="history-date">📅 1 Nov 2024 - 13:00</div>
-                        <div class="status-badge status-completed">Selesai</div>
-                    </div>
-                    <div class="history-tech">
-                        <div class="history-tech-avatar">👨‍🔧</div>
-                        <div class="history-tech-info">
-                            <div class="history-tech-name">Joko Widodo</div>
-                            <div class="history-service">Servis TV - Perbaikan Audio</div>
-                        </div>
-                    </div>
-                    <div class="history-details">
-                        <div class="history-price">Rp 80.000 • +10 poin</div>
-                        <button class="review-btn" style="background: #94a3b8;">Sudah</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Profile Page -->
         <div id="profilePage" class="page hidden">
             <div class="profile-header">
-                <div class="profile-avatar-large">👤</div>
+                <div class="profile-avatar-large"><i class='bx bx-user'></i></div>
                 <div class="profile-name">Rifa</div>
                 <div class="profile-phone">+6289530348150</div>
             </div>
 
             <div class="profile-stats">
                 <div class="stat-card">
-                    <div class="stat-value" id="totalOrders">15</div>
+                    <div class="stat-value" id="totalOrders">2</div>
                     <div class="stat-label">Pesanan</div>
                 </div>
                 <div class="stat-card">
@@ -1728,63 +1762,60 @@
 
             <div class="profile-menu">
                 <div class="menu-item" onclick="showProfileEdit()">
-                    <div class="menu-icon">✏️</div>
+                    <div class="menu-icon"><i class='bx bx-edit'></i></div>
                     <div class="menu-text">Edit Profil</div>
-                    <div class="menu-arrow">›</div>
+                    <div class="menu-arrow"><i class='bx bx-chevron-right'></i></div>
                 </div>
 
                 <div class="menu-item" onclick="showAddress()">
-                    <div class="menu-icon">📍</div>
+                    <div class="menu-icon"><i class='bx bx-map-pin'></i></div>
                     <div class="menu-text">Alamat Saya</div>
-                    <div class="menu-arrow">›</div>
+                    <div class="menu-arrow"><i class='bx bx-chevron-right'></i></div>
                 </div>
 
                 <div class="menu-item" onclick="showPayment()">
-                    <div class="menu-icon">💳</div>
+                    <div class="menu-icon"><i class='bx bx-credit-card'></i></div>
                     <div class="menu-text">Metode Pembayaran</div>
-                    <div class="menu-arrow">›</div>
+                    <div class="menu-arrow"><i class='bx bx-chevron-right'></i></div>
                 </div>
 
                 <div class="menu-item" onclick="switchPage('history')">
-                    <div class="menu-icon">📜</div>
+                    <div class="menu-icon"><i class='bx bx-receipt'></i></div>
                     <div class="menu-text">Riwayat Transaksi</div>
-                    <div class="menu-arrow">›</div>
+                    <div class="menu-arrow"><i class='bx bx-chevron-right'></i></div>
                 </div>
 
                 <div class="menu-item" onclick="showRewards()">
-                    <div class="menu-icon">🎁</div>
+                    <div class="menu-icon"><i class='bx bxs-gift'></i></div>
                     <div class="menu-text">Reward & Poin</div>
-                    <div class="menu-arrow">›</div>
+                    <div class="menu-arrow"><i class='bx bx-chevron-right'></i></div>
                 </div>
 
                 <div class="menu-item" onclick="showHelp()">
-                    <div class="menu-icon">❓</div>
+                    <div class="menu-icon"><i class='bx bx-help-circle'></i></div>
                     <div class="menu-text">Bantuan</div>
-                    <div class="menu-arrow">›</div>
+                    <div class="menu-arrow"><i class='bx bx-chevron-right'></i></div>
                 </div>
 
                 <div class="menu-item" onclick="showSettings()">
-                    <div class="menu-icon">⚙️</div>
+                    <div class="menu-icon"><i class='bx bx-cog'></i></div>
                     <div class="menu-text">Pengaturan</div>
-                    <div class="menu-arrow">›</div>
+                    <div class="menu-arrow"><i class='bx bx-chevron-right'></i></div>
                 </div>
 
                 <div class="menu-item" onclick="logout()">
-                    <div class="menu-icon">🚪</div>
+                    <div class="menu-icon"><i class='bx bx-log-out'></i></div>
                     <div class="menu-text">Keluar</div>
-                    <div class="menu-arrow">›</div>
+                    <div class="menu-arrow"><i class='bx bx-chevron-right'></i></div>
                 </div>
             </div>
         </div>
 
-        <!-- Tracking/GPS Page -->
         <div id="trackingPage" class="page hidden">
             <div class="tracking-container">
                 <div class="map-container">
-                    <!-- Map Grid -->
                     <div class="map-grid"></div>
                     
-                    <!-- Roads -->
                     <div class="road road-vertical">
                         <div class="road-line road-line-v" style="top: 0%;"></div>
                         <div class="road-line road-line-v" style="top: 20%;"></div>
@@ -1794,14 +1825,12 @@
                     </div>
                     <div class="road road-horizontal"></div>
                     
-                    <!-- Buildings -->
                     <div class="building" style="width: 60px; height: 60px; top: 15%; left: 15%;"></div>
                     <div class="building" style="width: 50px; height: 70px; top: 20%; left: 75%;"></div>
                     <div class="building" style="width: 55px; height: 55px; top: 55%; left: 20%;"></div>
                     <div class="building" style="width: 65px; height: 60px; top: 60%; left: 70%;"></div>
                     <div class="building" style="width: 45px; height: 50px; top: 80%; left: 30%;"></div>
                     
-                    <!-- Route Line -->
                     <svg style="position: absolute; width: 100%; height: 100%; z-index: 1;">
                         <path d="M 30% 70% Q 40% 50%, 60% 30%" 
                               stroke="#3b82f6" 
@@ -1817,47 +1846,44 @@
                         </path>
                     </svg>
                     
-                    <!-- Destination Marker -->
                     <div class="destination-marker">
-                        <div class="destination-pin">📍</div>
+                        <div class="destination-pin"><i class='bx bxs-map-pin'></i></div>
                         <div style="position: absolute; top: -30px; left: 50%; transform: translateX(-50%); background: white; padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: bold; color: #1e40af; white-space: nowrap; box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
                             Lokasi Anda
                         </div>
                     </div>
                     
-                    <!-- Technician Marker (Motor) -->
                     <div class="technician-marker">
-                        <div class="motor-icon">🏍️</div>
+                        <div class="motor-icon"><i class='bx bxs-motorcycle'></i></div>
                         <div style="position: absolute; top: -30px; left: 50%; transform: translateX(-50%); background: #3b82f6; color: white; padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: bold; white-space: nowrap; box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
                             Budi Santoso
                         </div>
                     </div>
                 </div>
                 
-                <!-- Tracking Info Card -->
                 <div class="tracking-info-card">
                     <div class="tech-status">
-                        <div class="tech-status-avatar">👨‍🔧</div>
+                        <div class="tech-status-avatar" id="trackingTechAvatar"><i class='bx bx-hard-hat'></i></div>
                         <div class="tech-status-info">
-                            <div class="tech-status-name">Budi Santoso</div>
+                            <div class="tech-status-name" id="trackingTechName">Budi Santoso</div>
                             <div class="tech-status-eta">ETA: 8 menit • 1.2 km</div>
                         </div>
-                        <div class="status-arriving">● Dalam Perjalanan</div>
+                        <div class="status-arriving"><i class='bx bxs-circle'></i> Dalam Perjalanan</div>
                     </div>
                     
                     <div class="tracking-details">
                         <div class="tracking-stat">
-                            <div class="tracking-stat-icon">📍</div>
+                            <div class="tracking-stat-icon"><i class='bx bx-map-alt'></i></div>
                             <div class="tracking-stat-value">1.2 km</div>
                             <div class="tracking-stat-label">Jarak</div>
                         </div>
                         <div class="tracking-stat">
-                            <div class="tracking-stat-icon">⏱️</div>
+                            <div class="tracking-stat-icon"><i class='bx bx-time'></i></div>
                             <div class="tracking-stat-value">8 mnt</div>
                             <div class="tracking-stat-label">Waktu</div>
                         </div>
                         <div class="tracking-stat">
-                            <div class="tracking-stat-icon">🏍️</div>
+                            <div class="tracking-stat-icon"><i class='bx bx-tachometer'></i></div>
                             <div class="tracking-stat-value">35 km/h</div>
                             <div class="tracking-stat-label">Kecepatan</div>
                         </div>
@@ -1865,27 +1891,26 @@
                     
                     <div class="tracking-actions">
                         <button class="tracking-btn btn-call" onclick="callTechnician()">
-                            📞 Telepon
+                            <i class='bx bx-phone'></i> Telepon
                         </button>
-                        <button class="tracking-btn btn-chat" onclick="openChatRoom('Budi Santoso', '👨‍🔧')">
-                            💬 Chat
+                        <button class="tracking-btn btn-chat" onclick="openChatRoom('Budi Santoso', 'bx-hard-hat', 'Baik, saya segera ke lokasi Anda', '10:30', 0, '20 Nov 2024 - 10:30')">
+                            <i class='bx bx-chat'></i> Chat
                         </button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Order Form Page -->
         <div id="orderFormPage" class="page hidden">
             <div class="header">
                 <div class="section-title" style="color: white; margin: 0;">
-                    📝 Form Pemesanan
+                    <i class='bx bx-file'></i> Form Pemesanan
                 </div>
             </div>
 
             <div class="order-form-container">
                 <div class="form-header">
-                    <div class="form-header-avatar" id="orderFormAvatar">👨‍🔧</div>
+                    <div class="form-header-avatar" id="orderFormAvatar"><i class='bx bx-hard-hat'></i></div>
                     <div class="form-header-info">
                         <h3 id="orderFormTechName">Budi Santoso</h3>
                         <div class="form-header-specialty" id="orderFormTechSpecialty">HP & Tablet • 5 tahun</div>
@@ -1893,23 +1918,21 @@
                 </div>
 
                 <div class="guarantee-note">
-                    🛡️ Garansi 1 Minggu • +10 Poin Loyalty
+                    <i class='bx bx-shield-alt-2'></i> Garansi 1 Minggu • +10 Poin Loyalty
                 </div>
 
                 <form id="orderForm">
-                    <!-- Alamat -->
                     <div class="form-group">
                         <label class="form-label form-label-required">Alamat Lengkap</label>
                         <textarea class="form-textarea" id="address" placeholder="Masukkan alamat lengkap Anda..." required>Jl. Merdeka No. 45, Padalarang, Jawa Barat</textarea>
                         <button type="button" class="location-btn" onclick="useCurrentLocation()">
-                            📍 Gunakan Lokasi Saat Ini
+                            <i class='bx bx-current-location'></i> Gunakan Lokasi Saat Ini
                         </button>
                     </div>
 
-                    <!-- Gadget -->
                     <div class="form-group">
                         <label class="form-label form-label-required">Jenis Gadget</label>
-                        <select class="form-select" id="gadgetType" onchange="updateGadgetOptions()" required>
+                        <select class="form-select" id="gadgetType" onchange="updateDamageOptions()" required>
                             <option value="">Pilih Jenis Gadget</option>
                             <option value="hp">HP / Smartphone</option>
                             <option value="laptop">Laptop / Notebook</option>
@@ -1921,72 +1944,66 @@
                             <option value="mesin-cuci">Mesin Cuci</option>
                             <option value="kamera">Kamera</option>
                             <option value="audio">Audio System</option>
+                            <option value="setrika">Setrika</option>
                         </select>
                     </div>
 
-                    <!-- Merk & Model -->
                     <div class="form-group">
                         <label class="form-label form-label-required">Merk & Model</label>
                         <input type="text" class="form-input" id="gadgetModel" placeholder="Contoh: Samsung Galaxy S23, iPhone 14 Pro" required>
                     </div>
 
-                    <!-- Tipe Kerusakan -->
-                    <div class="form-group">
+                    <div class="form-group" id="damageTypeGroup" style="display: none;">
                         <label class="form-label form-label-required">Tipe Kerusakan</label>
-                        <div class="form-radio-group" id="damageTypeGroup">
+                        <div class="form-radio-group">
                             <div class="form-radio-item">
                                 <input type="radio" class="form-radio-input" name="damageType" id="hardware" value="hardware" onchange="updateDamageOptions()" required>
-                                <label class="form-radio-label" for="hardware">🔧 Hardware</label>
+                                <label class="form-radio-label" for="hardware"><i class='bx bx-wrench'></i> Hardware</label>
                             </div>
                             <div class="form-radio-item">
                                 <input type="radio" class="form-radio-input" name="damageType" id="software" value="software" onchange="updateDamageOptions()">
-                                <label class="form-radio-label" for="software">💻 Software</label>
+                                <label class="form-radio-label" for="software"><i class='bx bx-code-alt'></i> Software</label>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Jenis Kerusakan -->
                     <div class="form-group" id="damageDetailGroup" style="display: none;">
                         <label class="form-label form-label-required">Jenis Kerusakan</label>
                         <div class="form-chip-group" id="damageChips">
-                            <!-- Will be populated dynamically -->
-                        </div>
+                            </div>
                     </div>
 
-                    <!-- Deskripsi Masalah -->
                     <div class="form-group">
                         <label class="form-label">Deskripsi Masalah (Opsional)</label>
                         <textarea class="form-textarea" id="problemDesc" placeholder="Jelaskan masalah yang Anda alami secara detail..."></textarea>
                     </div>
 
-                    <!-- Waktu Kunjungan -->
                     <div class="form-group">
                         <label class="form-label form-label-required">Waktu Kunjungan</label>
                         <div class="form-radio-group">
                             <div class="form-radio-item">
                                 <input type="radio" class="form-radio-input" name="visitTime" id="now" value="now" checked>
-                                <label class="form-radio-label" for="now">⚡ Sekarang</label>
+                                <label class="form-radio-label" for="now"><i class='bx bx-bolt-circle'></i> Sekarang</label>
                             </div>
                             <div class="form-radio-item">
                                 <input type="radio" class="form-radio-input" name="visitTime" id="schedule" value="schedule">
-                                <label class="form-radio-label" for="schedule">📅 Jadwalkan</label>
+                                <label class="form-radio-label" for="schedule"><i class='bx bx-calendar-check'></i> Jadwalkan</label>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Estimasi Harga -->
                     <div class="price-estimate-card">
-                        <div class="price-estimate-title">💰 Estimasi Biaya</div>
+                        <div class="price-estimate-title"><i class='bx bx-wallet'></i> Estimasi Biaya</div>
                         <div class="price-estimate-row">
                             <span>Biaya Pemeriksaan</span>
                             <span id="inspectionFee">Gratis</span>
                         </div>
                         <div class="price-estimate-row">
-                            <span>Biaya Servis</span>
+                            <span>Biaya Servis (Awal)</span>
                             <span id="serviceFee">Rp 50.000</span>
                         </div>
                         <div class="price-estimate-row">
-                            <span>Biaya Komponen (Estimasi)</span>
+                            <span>Biaya Komponen (Est.)</span>
                             <span id="componentFee">Rp 0</span>
                         </div>
                         <div class="price-estimate-row">
@@ -1998,37 +2015,35 @@
                             <span id="totalPrice">Rp 50.000</span>
                         </div>
                         <div style="margin-top: 10px; font-size: 11px; color: #78350f; text-align: center;">
-                            *Harga pasti akan dikonfirmasi setelah pemeriksaan teknisi
+                            *Harga pasti akan dikonfirmasi setelah pemeriksaan teknisi di chat
                         </div>
                     </div>
 
-                    <!-- Submit Buttons -->
                     <button type="submit" class="form-submit-btn">
-                        ✅ Konfirmasi Pemesanan
+                        <i class='bx bx-check-circle'></i> Konfirmasi Pemesanan
                     </button>
                     <button type="button" class="form-cancel-btn" onclick="goBack()">
-                        ❌ Batal
+                        <i class='bx bx-x-circle'></i> Batal
                     </button>
                 </form>
             </div>
         </div>
 
-        <!-- Bottom Navigation -->
         <div class="bottom-nav">
             <div class="nav-item active" onclick="switchPage('home')">
-                <div class="nav-icon">🏠</div>
+                <div class="nav-icon"><i class='bx bxs-home-alt-2'></i></div>
                 <div class="nav-text">Home</div>
             </div>
             <div class="nav-item" onclick="switchPage('chat')">
-                <div class="nav-icon">💬</div>
+                <div class="nav-icon"><i class='bx bx-chat'></i></div>
                 <div class="nav-text">Chat</div>
             </div>
             <div class="nav-item" onclick="switchPage('history')">
-                <div class="nav-icon">🕐</div>
+                <div class="nav-icon"><i class='bx bx-history'></i></div>
                 <div class="nav-text">Riwayat</div>
             </div>
             <div class="nav-item" onclick="switchPage('profile')">
-                <div class="nav-icon">👤</div>
+                <div class="nav-icon"><i class='bx bx-user'></i></div>
                 <div class="nav-text">Profil</div>
             </div>
         </div>
@@ -2037,21 +2052,23 @@
     <script>
         let currentPoints = 150;
         let currentPage = 'home';
-        let currentChatTech = { name: '', avatar: '' };
-        let selectedTech = { name: '', avatar: '', specialty: '', price: 50000 };
-        
+        let currentChatTech = { name: '', avatar: '', orderDate: '' };
+        let selectedTech = { name: '', avatar: 'bx-hard-hat', specialty: 'HP & Tablet • 5 tahun', price: 50000, category: 'HP' };
+        let currentOrder = null;
+
         const damageOptions = {
             hardware: {
                 hp: ['LCD Pecah', 'Baterai Rusak', 'Port Charging', 'Kamera Error', 'Speaker Mati', 'Tombol Rusak'],
                 laptop: ['Layar Rusak', 'Keyboard Error', 'Touchpad Rusak', 'Port USB Rusak', 'Fan Mati', 'Harddisk Error'],
                 tablet: ['LCD Pecah', 'Baterai Rusak', 'Port Charging', 'Touchscreen Error'],
                 pc: ['Motherboard Error', 'RAM Rusak', 'VGA Error', 'Power Supply', 'Harddisk Rusak'],
-                tv: ['Layar Bergaris', 'No Signal', 'Speaker Rusak', 'HDMI Error', 'Remot Rusak'],
+                tv: ['Layar Bergaris', 'No Signal', 'Speaker Rusak', 'HDMI Error', 'Tidak Ada Suara'],
                 ac: ['Tidak Dingin', 'Bocor', 'Kompresor Rusak', 'Freon Habis', 'PCB Error'],
                 kulkas: ['Tidak Dingin', 'Bocor', 'Kompresor Mati', 'Freezer Error'],
                 'mesin-cuci': ['Motor Mati', 'Tidak Berputar', 'Bocor', 'Timer Rusak'],
                 kamera: ['Lensa Rusak', 'Sensor Error', 'Flash Mati', 'Autofocus Error'],
-                audio: ['Speaker Mati', 'No Sound', 'Bluetooth Error', 'Remote Rusak']
+                audio: ['Speaker Mati', 'No Sound', 'Bluetooth Error', 'Remote Rusak'],
+                setrika: ['Tidak Panas', 'Kabel Putus', 'Uap Mati', 'Bocor']
             },
             software: {
                 hp: ['Bootloop', 'Lag/Lemot', 'Virus', 'Aplikasi Force Close', 'Storage Penuh', 'Update Error'],
@@ -2063,31 +2080,87 @@
                 kulkas: ['Setting Suhu', 'Display Error'],
                 'mesin-cuci': ['Program Error', 'Display Error'],
                 kamera: ['Firmware Update', 'Setting Error', 'Memory Card Error'],
-                audio: ['Firmware Update', 'Bluetooth Pairing', 'EQ Setting']
+                audio: ['Firmware Update', 'Bluetooth Pairing', 'EQ Setting'],
+                setrika: ['Firmware Error']
             }
         };
-        const technicians = {
+
+        const techniciansData = {
             'HP': [
-                { name: 'Budi Santoso', rating: 4.9, reviews: 234, specialty: 'HP & Tablet', distance: '1.2 km', price: 'Rp 50.000', avatar: '👨‍🔧', experience: '5 tahun' },
-                { name: 'Ahmad Rizki', rating: 4.8, reviews: 189, specialty: 'HP Flagship', distance: '2.5 km', price: 'Rp 55.000', avatar: '👨‍💼', experience: '4 tahun' },
-                { name: 'Eko Prasetyo', rating: 4.7, reviews: 156, specialty: 'HP & Gaming Phone', distance: '3.1 km', price: 'Rp 60.000', avatar: '👨‍🎓', experience: '3 tahun' }
+                { name: 'Budi Santoso', rating: 4.9, reviews: 234, specialty: 'HP & Tablet', distance: '1.2 km', price: 'Rp 50.000', avatar: 'bx-hard-hat', experience: '5 tahun', portofolio: 'Ahli perbaikan port charging dan penggantian LCD semua merk.' },
+                { name: 'Ahmad Rizki', rating: 4.8, reviews: 189, specialty: 'HP Flagship', distance: '2.5 km', price: 'Rp 55.000', avatar: 'bx-user-pin', experience: '4 tahun', portofolio: 'Spesialis perbaikan HP premium (Samsung S Series, iPhone) dan masalah software kompleks.' },
             ],
             'Laptop': [
-                { name: 'Dedi Kurniawan', rating: 4.9, reviews: 312, specialty: 'Laptop & PC', distance: '0.8 km', price: 'Rp 75.000', avatar: '👨‍🔬', experience: '6 tahun' },
-                { name: 'Rudi Hermawan', rating: 4.8, reviews: 201, specialty: 'Gaming Laptop', distance: '1.5 km', price: 'Rp 85.000', avatar: '👨‍💻', experience: '5 tahun' },
-                { name: 'Fahmi Abdullah', rating: 4.6, reviews: 178, specialty: 'MacBook Specialist', distance: '2.2 km', price: 'Rp 90.000', avatar: '👨‍🏫', experience: '4 tahun' }
+                { name: 'Dedi Kurniawan', rating: 4.9, reviews: 312, specialty: 'Laptop & PC', distance: '0.8 km', price: 'Rp 75.000', avatar: 'bx-microscope', experience: '6 tahun', portofolio: 'Fokus pada kerusakan motherboard, upgrade hardware, dan instalasi OS Windows/Linux.' },
+                { name: 'Rudi Hermawan', rating: 4.8, reviews: 201, specialty: 'Gaming Laptop', distance: '1.5 km', price: 'Rp 85.000', avatar: 'bx-code-alt', experience: '5 tahun', portofolio: 'Ahli pendingin (fan & heatsink), perbaikan GPU, dan perakitan PC rakitan.' },
             ],
-            'Elektronik': [
-                { name: 'Joko Widodo', rating: 4.8, reviews: 267, specialty: 'TV & Audio', distance: '1.0 km', price: 'Rp 80.000', avatar: '👨‍🔧', experience: '7 tahun' },
-                { name: 'Slamet Riyadi', rating: 4.7, reviews: 198, specialty: 'AC & Kulkas', distance: '1.8 km', price: 'Rp 100.000', avatar: '👨‍🏭', experience: '8 tahun' },
-                { name: 'Agus Salim', rating: 4.9, reviews: 223, specialty: 'Mesin Cuci', distance: '2.4 km', price: 'Rp 70.000', avatar: '👨‍🔧', experience: '6 tahun' }
+            // New Categories for Home Appliances
+            'TV': [
+                { name: 'Joko Widodo', rating: 4.8, reviews: 267, specialty: 'TV & Audio', distance: '1.0 km', price: 'Rp 80.000', avatar: 'bx-tv', experience: '7 tahun', portofolio: 'Spesialis TV LED/Smart TV (Layar, PSU, Mainboard) dan instalasi audio home theater.' },
+                { name: 'Slamet Riyadi', rating: 4.7, reviews: 198, specialty: 'Elektronik Rumah Tangga', distance: '1.8 km', price: 'Rp 100.000', avatar: 'bx-bulb', experience: '8 tahun', portofolio: 'Melayani semua jenis TV tabung, LCD, dan LED. Fokus pada kerusakan layar dan panel.' },
+            ],
+            'AC': [
+                { name: 'Slamet Riyadi', rating: 4.7, reviews: 198, specialty: 'AC & Kulkas', distance: '1.8 km', price: 'Rp 100.000', avatar: 'bx-gas-pump', experience: '8 tahun', portofolio: 'Pengisian Freon, perbaikan kompresor AC split dan AC portable. Bersertifikat ahli HVAC.' },
+                { name: 'Agus Salim', rating: 4.9, reviews: 223, specialty: 'Mesin Cuci & AC', distance: '2.4 km', price: 'Rp 70.000', avatar: 'bx-hard-hat', experience: '6 tahun', portofolio: 'Layanan cuci AC, perbaikan PCB, dan ganti kapasitor untuk AC inverter/non-inverter.' },
+            ],
+            'Kulkas': [
+                { name: 'Slamet Riyadi', rating: 4.7, reviews: 198, specialty: 'AC & Kulkas', distance: '1.8 km', price: 'Rp 100.000', avatar: 'bx-gas-pump', experience: '8 tahun', portofolio: 'Ahli Kulkas 1/2 pintu, Freezer, dan showcase. Fokus masalah kompresor dan kebocoran freon.' },
+            ],
+            'MesinCuci': [
+                { name: 'Agus Salim', rating: 4.9, reviews: 223, specialty: 'Mesin Cuci & AC', distance: '2.4 km', price: 'Rp 70.000', avatar: 'bx-hard-hat', experience: '6 tahun', portofolio: 'Perbaikan motor, gearbox, dan modul PCB mesin cuci 1 tabung maupun 2 tabung.' },
+            ],
+            'Setrika': [
+                { name: 'Bambang Kusuma', rating: 4.9, reviews: 189, specialty: 'Setrika & Peralatan Kecil', distance: '1.3 km', price: 'Rp 35.000', avatar: 'bx-paint', experience: '5 tahun', portofolio: 'Servis setrika, rice cooker, blender, dan peralatan dapur lainnya. Biaya bersahabat.' },
             ],
             'Kamera': [
-                { name: 'Bambang Kusuma', rating: 4.9, reviews: 189, specialty: 'DSLR & Mirrorless', distance: '1.3 km', price: 'Rp 95.000', avatar: '👨‍🎨', experience: '5 tahun' },
-                { name: 'Hendra Gunawan', rating: 4.7, reviews: 156, specialty: 'Camera Lens', distance: '2.0 km', price: 'Rp 85.000', avatar: '📸', experience: '4 tahun' },
-                { name: 'Rizal Fauzi', rating: 4.8, reviews: 167, specialty: 'Action Camera', distance: '2.7 km', price: 'Rp 75.000', avatar: '👨‍💼', experience: '3 tahun' }
+                { name: 'Bambang Kusuma', rating: 4.9, reviews: 189, specialty: 'DSLR & Mirrorless', distance: '1.3 km', price: 'Rp 95.000', avatar: 'bx-paint', experience: '5 tahun', portofolio: 'Ahli cleaning sensor, perbaikan lensa, dan flash eksternal. Khusus kamera profesional.' },
+                { name: 'Hendra Gunawan', rating: 4.7, reviews: 156, specialty: 'Camera Lens', distance: '2.0 km', price: 'Rp 85.000', avatar: 'bx-camera-movie', experience: '4 tahun', portofolio: 'Fokus pada kalibrasi dan perbaikan lensa kamera segala merk.' },
+            ],
+             'PC': [
+                { name: 'Dedi Kurniawan', rating: 4.9, reviews: 312, specialty: 'Laptop & PC', distance: '0.8 km', price: 'Rp 75.000', avatar: 'bx-microscope', experience: '6 tahun', portofolio: 'Spesialis rakit PC, troubleshooting hardware (Motherboard/RAM/VGA), dan instalasi OS.' },
+            ],
+            'Audio': [
+                { name: 'Joko Widodo', rating: 4.8, reviews: 267, specialty: 'TV & Audio', distance: '1.0 km', price: 'Rp 80.000', avatar: 'bx-tv', experience: '7 tahun', portofolio: 'Perbaikan Sound System, Speaker Bluetooth, dan Amplifier. Fokus pada kualitas suara.' },
+            ],
+            'Lainnya': [
+                { name: 'Agus Salim', rating: 4.9, reviews: 223, specialty: 'Multi Elektronik', distance: '2.4 km', price: 'Rp 70.000', avatar: 'bx-hard-hat', experience: '6 tahun', portofolio: 'Melayani berbagai peralatan rumah tangga yang tidak disebutkan, konsultasikan via chat.' },
             ]
         };
+        
+        // Mapping from technician category name to gadget type for form
+        const categoryToGadgetMap = {
+            'HP': 'hp',
+            'Laptop': 'laptop',
+            'Kamera': 'kamera',
+            'TV': 'tv',
+            'AC': 'ac',
+            'Kulkas': 'kulkas',
+            'MesinCuci': 'mesin-cuci',
+            'Setrika': 'setrika',
+            'PC': 'pc',
+            'Audio': 'audio',
+            'Lainnya': ''
+        };
+
+        const getIconElement = (iconClass) => `<i class='bx ${iconClass}'></i>`;
+        const getAvatarElement = (iconClass) => `<div class="user-avatar"><i class='bx ${iconClass}'></i></div>`;
+
+        function formatRupiah(number) {
+            return 'Rp ' + number.toLocaleString('id-ID');
+        }
+
+        function showSubCategories(category) {
+            hideAllPages();
+            document.getElementById('homePage').classList.remove('hidden');
+            document.getElementById('backButton').classList.add('hidden'); // Tetap di Home Page, Back Button disembunyikan
+            
+            const subCat = document.getElementById('subCategoryList');
+            if (category === 'RumahTangga') {
+                 subCat.classList.toggle('hidden');
+            } else {
+                 subCat.classList.add('hidden');
+            }
+        }
 
         function showTechnicians(category) {
             hideAllPages();
@@ -2099,31 +2172,38 @@
             const techList = document.getElementById('technicianList');
             techList.innerHTML = '';
 
-            technicians[category].forEach(tech => {
+            const techs = techniciansData[category] || techniciansData['HP']; // Fallback jika kategori kosong
+
+            techs.forEach(tech => {
                 const card = document.createElement('div');
                 card.className = 'technician-card';
                 card.innerHTML = `
                     <div class="tech-header">
-                        <div class="tech-avatar">${tech.avatar}</div>
+                        <div class="tech-avatar">${getIconElement(tech.avatar)}</div>
                         <div class="tech-info">
                             <div class="tech-name">${tech.name}</div>
                             <div class="tech-rating">
-                                ⭐ ${tech.rating} (${tech.reviews} ulasan)
+                                <i class='bx bxs-star'></i> ${tech.rating} (${tech.reviews} ulasan)
                             </div>
                             <div class="tech-specialty">${tech.specialty} • ${tech.experience}</div>
+                            <div class="tech-portofolio">
+                                <i class='bx bx-check-shield'></i> ${tech.portofolio}
+                            </div>
                         </div>
                     </div>
                     <div class="tech-details">
-                        <div class="tech-distance">📍 ${tech.distance}</div>
+                        <div class="tech-distance"><i class='bx bx-map-alt'></i> ${tech.distance}</div>
                         <div class="tech-price">${tech.price}</div>
                     </div>
-                    <button class="order-button" onclick="showOrderForm('${tech.name}', '${tech.avatar}', '${tech.specialty}', '${tech.price}')">Pesan Sekarang</button>
+                    <button class="order-button" onclick="showOrderForm('${tech.name}', '${tech.avatar}', '${tech.specialty}', '${tech.price}', '${category}')">Pesan Sekarang</button>
                 `;
                 techList.appendChild(card);
             });
+            // Hapus sub-category list saat pindah ke halaman teknisi
+            document.getElementById('subCategoryList').classList.add('hidden');
         }
 
-        function showOrderForm(techName, avatar, specialty, price) {
+        function showOrderForm(techName, avatar, specialty, price, category) {
             hideAllPages();
             currentPage = 'orderForm';
             
@@ -2132,30 +2212,50 @@
                 name: techName,
                 avatar: avatar,
                 specialty: specialty,
-                price: parseInt(price.replace(/\D/g, ''))
+                price: parseInt(price.replace(/\D/g, '')),
+                category: category // Store category for form logic
             };
             
-            // Update form header
-            document.getElementById('orderFormAvatar').textContent = avatar;
+            // Reset form and update header
+            document.getElementById('orderForm').reset();
+            document.getElementById('orderFormAvatar').innerHTML = getIconElement(avatar);
             document.getElementById('orderFormTechName').textContent = techName;
             document.getElementById('orderFormTechSpecialty').textContent = specialty;
+            
+            // Pre-select gadget type based on category
+            const gadgetValue = categoryToGadgetMap[category] || '';
+            document.getElementById('gadgetType').value = gadgetValue;
+            
+            // Reset price estimate and damage options
             document.getElementById('serviceFee').textContent = price;
+            document.getElementById('componentFee').textContent = formatRupiah(0);
             document.getElementById('totalPrice').textContent = price;
+            document.getElementById('damageTypeGroup').style.display = 'none';
+            document.getElementById('damageDetailGroup').style.display = 'none';
+            document.getElementById('damageChips').innerHTML = '';
+            
+            // Re-run updateDamageOptions if gadget is pre-selected
+            if (gadgetValue) {
+                 document.getElementById('damageTypeGroup').style.display = 'grid';
+                 // Trigger change to populate chips if radio is selected
+                 const selectedRadio = document.querySelector('input[name="damageType"]:checked');
+                 if (selectedRadio) updateDamageOptions();
+            }
             
             document.getElementById('orderFormPage').classList.remove('hidden');
             document.getElementById('backButton').classList.remove('hidden');
         }
 
-        function updateGadgetOptions() {
-            const gadgetType = document.getElementById('gadgetType').value;
-            if (gadgetType) {
-                document.getElementById('damageTypeGroup').style.display = 'grid';
-            }
-        }
-
         function updateDamageOptions() {
             const gadgetType = document.getElementById('gadgetType').value;
             const damageType = document.querySelector('input[name="damageType"]:checked')?.value;
+
+            if (gadgetType) {
+                document.getElementById('damageTypeGroup').style.display = 'grid';
+            } else {
+                document.getElementById('damageTypeGroup').style.display = 'none';
+                document.getElementById('damageDetailGroup').style.display = 'none';
+            }
             
             if (gadgetType && damageType) {
                 const options = damageOptions[damageType][gadgetType] || [];
@@ -2175,20 +2275,24 @@
                 });
                 
                 document.getElementById('damageDetailGroup').style.display = 'block';
+            } else if (gadgetType) {
+                 // Clear chips if only gadget is selected
+                 document.getElementById('damageDetailGroup').style.display = 'none';
+                 document.getElementById('damageChips').innerHTML = '';
             }
         }
 
         function updatePriceEstimate(damageDetail) {
             let componentFee = 0;
             
-            // Estimate component prices based on damage type
-            const expensiveDamages = ['LCD Pecah', 'Layar Rusak', 'Baterai Rusak', 'Motherboard Error', 'Kompresor Rusak'];
-            const moderateDamages = ['Port Charging', 'Speaker Mati', 'Keyboard Error', 'Kamera Error'];
+            // Estimate component prices based on damage type (simplified logic)
+            const expensiveDamages = ['LCD Pecah', 'Layar Rusak', 'Motherboard Error', 'Kompresor Rusak', 'Lensa Rusak'];
+            const moderateDamages = ['Port Charging', 'Speaker Mati', 'Keyboard Error', 'Baterai Rusak', 'Freon Habis', 'Motor Mati'];
             
             if (expensiveDamages.some(d => damageDetail.includes(d))) {
-                componentFee = 200000;
+                componentFee = 250000;
             } else if (moderateDamages.some(d => damageDetail.includes(d))) {
-                componentFee = 75000;
+                componentFee = 100000;
             } else {
                 componentFee = 0;
             }
@@ -2196,8 +2300,8 @@
             const serviceFee = selectedTech.price;
             const total = serviceFee + componentFee;
             
-            document.getElementById('componentFee').textContent = 'Rp ' + componentFee.toLocaleString('id-ID');
-            document.getElementById('totalPrice').textContent = 'Rp ' + total.toLocaleString('id-ID');
+            document.getElementById('componentFee').textContent = formatRupiah(componentFee);
+            document.getElementById('totalPrice').textContent = formatRupiah(total);
         }
 
         function useCurrentLocation() {
@@ -2208,37 +2312,80 @@
             e.preventDefault();
             
             const address = document.getElementById('address').value;
-            const gadgetType = document.getElementById('gadgetType').value;
+            const gadgetTypeElement = document.getElementById('gadgetType');
+            const gadgetType = gadgetTypeElement.value;
+            const gadgetTypeName = gadgetTypeElement.options[gadgetTypeElement.selectedIndex].text;
             const gadgetModel = document.getElementById('gadgetModel').value;
-            const selectedDamage = document.querySelector('.form-chip.active')?.textContent;
-            const totalPrice = document.getElementById('totalPrice').textContent;
+            const selectedDamageChip = document.querySelector('.form-chip.active');
+            const selectedDamage = selectedDamageChip?.textContent || '';
+            const totalPriceText = document.getElementById('totalPrice').textContent;
             
-            if (!gadgetType) {
-                alert('⚠️ Mohon pilih jenis gadget!');
+            if (!gadgetType || !document.querySelector('input[name="damageType"]:checked') || !selectedDamage) {
+                alert('⚠️ Mohon lengkapi semua data gadget dan kerusakan!');
                 return;
             }
             
-            if (!document.querySelector('input[name="damageType"]:checked')) {
-                alert('⚠️ Mohon pilih tipe kerusakan!');
-                return;
-            }
-            
-            if (!selectedDamage) {
-                alert('⚠️ Mohon pilih jenis kerusakan!');
-                return;
-            }
+            // New Order Object
+            const now = new Date();
+            const orderDate = `${now.getDate()} ${now.toLocaleString('id-ID', { month: 'short' })} ${now.getFullYear()} - ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+            currentOrder = {
+                techName: selectedTech.name,
+                techAvatar: selectedTech.avatar,
+                serviceType: `${gadgetTypeName} - ${selectedDamage}`,
+                price: selectedTech.price,
+                totalPrice: totalPriceText,
+                address: address,
+                gadgetModel: gadgetModel,
+                orderDate: orderDate,
+                status: 'ongoing'
+            };
+
+            // Add to history list
+            addOrderToHistory(currentOrder);
             
             currentPoints += 10;
             document.getElementById('pointsDisplay').textContent = currentPoints;
             document.getElementById('profilePoints').textContent = currentPoints;
+            document.getElementById('totalOrders').textContent = parseInt(document.getElementById('totalOrders').textContent) + 1;
             
-            alert(`✅ Pemesanan Berhasil!\n\n👨‍🔧 Teknisi: ${selectedTech.name}\n📍 Alamat: ${address}\n📱 Gadget: ${gadgetModel}\n🔧 Kerusakan: ${selectedDamage}\n💰 Total: ${totalPrice}\n\n🎁 +10 poin loyalty!\n🛡️ Garansi 1 minggu\n\nTeknisi akan segera menghubungi Anda!`);
+            alert(`✅ Pemesanan Berhasil!\n\n👨‍🔧 Teknisi: ${selectedTech.name}\n📱 Gadget: ${gadgetModel}\n🔧 Kerusakan: ${selectedDamage}\n💰 Total Estimasi: ${totalPriceText}\n\n🎁 +10 poin loyalty!\n🛡️ Garansi 1 minggu\n\nAnda akan dialihkan ke Chat Room untuk konfirmasi harga pasti.`);
             
-            // Redirect to tracking page
+            // Redirect to chat page
             setTimeout(() => {
-                showTracking();
-            }, 1000);
+                openChatRoom(selectedTech.name, selectedTech.avatar, '', now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0'), 0, orderDate, true);
+            }, 500);
         });
+
+        function addOrderToHistory(order) {
+            const historyList = document.getElementById('historyList');
+            const item = document.createElement('div');
+            item.className = 'history-item';
+            item.setAttribute('data-tech-name', order.techName);
+            item.setAttribute('data-service-type', order.serviceType);
+            item.setAttribute('data-status', order.status);
+            item.setAttribute('data-price', order.totalPrice);
+            item.setAttribute('data-avatar', order.techAvatar);
+            
+            item.innerHTML = `
+                <div class="history-header">
+                    <div class="history-date"><i class='bx bx-calendar'></i> ${order.orderDate}</div>
+                    <div class="status-badge status-ongoing">Berlangsung</div>
+                </div>
+                <div class="history-tech">
+                    <div class="history-tech-avatar">${getIconElement(order.techAvatar)}</div>
+                    <div class="history-tech-info">
+                        <div class="history-tech-name">${order.techName}</div>
+                        <div class="history-service">${order.serviceType}</div>
+                    </div>
+                </div>
+                <div class="history-details">
+                    <div class="history-price">${order.totalPrice}</div>
+                    <button class="review-btn" onclick="showTracking('${order.techName}', '${order.techAvatar}')">Lacak</button>
+                </div>
+            `;
+            
+            historyList.prepend(item);
+        }
 
         function hideAllPages() {
             document.getElementById('homePage').classList.add('hidden');
@@ -2250,6 +2397,7 @@
             document.getElementById('trackingPage').classList.add('hidden');
             document.getElementById('orderFormPage').classList.add('hidden');
             document.getElementById('backButton').classList.add('hidden');
+            document.getElementById('subCategoryList').classList.add('hidden');
             
             document.querySelectorAll('.nav-item').forEach(item => {
                 item.classList.remove('active');
@@ -2295,20 +2443,143 @@
                 document.getElementById('technicianPage').classList.remove('hidden');
                 document.getElementById('backButton').classList.remove('hidden');
                 currentPage = 'technician';
+            } else if (currentPage === 'technician') {
+                 // Determine parent category to go back to Home
+                 switchPage('home');
             } else {
                 switchPage('home');
             }
         }
 
-        function openChatRoom(techName, avatar) {
+        function openChatRoom(techName, avatar, lastMessage, time, unread, orderDate, isNewOrder = false) {
             hideAllPages();
             currentPage = 'chatRoom';
-            currentChatTech = { name: techName, avatar: avatar };
+            currentChatTech = { name: techName, avatar: avatar, orderDate: orderDate };
             
             document.getElementById('chatRoomPage').classList.remove('hidden');
             document.getElementById('backButton').classList.remove('hidden');
             document.getElementById('chatRoomName').textContent = techName;
-            document.getElementById('chatRoomAvatar').textContent = avatar;
+            document.getElementById('chatRoomAvatar').innerHTML = getIconElement(avatar);
+            
+            const messagesContainer = document.getElementById('chatMessages');
+            messagesContainer.innerHTML = ''; // Clear previous messages
+
+            // Initial messages (simulasi)
+            const initialMessages = [
+                { type: 'received', text: `Halo ${techName}. Saya akan segera ke lokasi Anda untuk pemeriksaan.` },
+                { type: 'sent', text: `Baik, saya tunggu. Alamat lengkap saya: Jl. Merdeka No. 45, Padalarang.` },
+            ];
+            
+            if (isNewOrder) {
+                // Remove the standard first message since we use a custom one
+                initialMessages.shift();
+                initialMessages.unshift({ type: 'received', text: `Selamat datang, saya ${currentOrder.techName}. Saya sudah menerima notifikasi pesanan ${currentOrder.serviceType}. Saya sedang dalam perjalanan.` });
+                
+                // Simulate price offer after a delay
+                setTimeout(() => {
+                    simulatePriceOffer(currentOrder, techName, avatar);
+                }, 3000);
+            }
+
+            initialMessages.forEach(msg => {
+                appendMessage(messagesContainer, msg.type, msg.text, msg.type === 'received' ? avatar : 'bx-user');
+            });
+            
+             messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+        
+        function simulatePriceOffer(order, techName, avatar) {
+            const messagesContainer = document.getElementById('chatMessages');
+            const now = new Date();
+            const time = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
+            
+            // Simulating confirmed repair details
+            const damage = order.serviceType.split(' - ')[1];
+            let confirmedServiceFee = order.price;
+            let confirmedComponentFee = 0;
+            let discount = 0;
+            
+            // Simplified pricing logic after "inspection" (Adjusted for Setrika/TV)
+            if (damage.includes('LCD') || damage.includes('Layar Bergaris')) {
+                confirmedComponentFee = 450000;
+                confirmedServiceFee = 75000;
+            } else if (damage.includes('Port Charging') || damage.includes('Motor Mati')) {
+                confirmedComponentFee = 50000;
+                confirmedServiceFee = 50000;
+                discount = 5000;
+            } else if (damage.includes('Tidak Panas')) {
+                 confirmedServiceFee = 35000;
+                 confirmedComponentFee = 25000; // Elemen pemanas
+            } else if (damage.includes('Install OS')) {
+                 confirmedServiceFee = 150000;
+                 confirmedComponentFee = 0;
+            } else {
+                 confirmedComponentFee = 100000;
+            }
+            
+            const finalTotal = confirmedServiceFee + confirmedComponentFee - discount;
+
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message received';
+            messageDiv.innerHTML = `
+                <div class="message-avatar">${getIconElement(avatar)}</div>
+                <div>
+                    <div class="message-bubble">
+                        Halo, saya sudah periksa di lokasi Anda. Kerusakan terkonfirmasi adalah **${damage}** dan membutuhkan penggantian komponen.
+                        Berikut adalah penawaran harga servis (total biaya komponen sudah termasuk):
+                        <div class="price-offer-card">
+                            <div class="offer-title"><i class='bx bx-coin-stack'></i> RINCIAN HARGA</div>
+                            <div class="offer-row"><span>Kerusakan</span><span>${damage}</span></div>
+                            <div class="offer-row"><span>Biaya Servis</span><span>${formatRupiah(confirmedServiceFee)}</span></div>
+                            <div class="offer-row"><span>Biaya Komponen</span><span>${formatRupiah(confirmedComponentFee)}</span></div>
+                            <div class="offer-row" style="color: #059669;"><span>Diskon Promo</span><span>-${formatRupiah(discount)}</span></div>
+                            <div class="offer-total"><span>Total Pembayaran</span><span>${formatRupiah(finalTotal)}</span></div>
+                            <div style="margin-top: 5px; font-size: 10px; text-align: center; color: #92400e;">Harga ini sudah final, termasuk biaya kunjungan, dan bergaransi 1 minggu.</div>
+                            <button class="offer-button" onclick="acceptPriceOffer(${finalTotal})"><i class='bx bx-check'></i> Setuju & Lanjutkan Servis</button>
+                        </div>
+                    </div>
+                    <div class="message-time">${time}</div>
+                </div>
+            `;
+            
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function acceptPriceOffer(totalPrice) {
+            alert(`🎉 Anda telah menyetujui total harga ${formatRupiah(totalPrice)}. Teknisi akan segera memulai perbaikan!`);
+            // Add a confirmation message to chat
+            const messagesContainer = document.getElementById('chatMessages');
+            appendMessage(messagesContainer, 'sent', `Saya setuju dengan harga ${formatRupiah(totalPrice)}. Silakan lanjutkan perbaikan!`, 'bx-user');
+             // Simulate technician confirmation
+            setTimeout(() => {
+                appendMessage(messagesContainer, 'received', 'Baik, perbaikan segera dimulai! Estimasi selesai dalam 60 menit. Mohon tunggu.', currentChatTech.avatar);
+            }, 1000);
+        }
+
+        function appendMessage(container, type, text, avatar) {
+            const now = new Date();
+            const time = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
+            
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}`;
+            
+            let avatarHtml = type === 'received' ? `<div class="message-avatar">${getIconElement(avatar)}</div>` : '';
+            let messageContent = `
+                <div>
+                    <div class="message-bubble">${text}</div>
+                    <div class="message-time">${time}</div>
+                </div>
+            `;
+            
+            if (type === 'sent') {
+                messageDiv.innerHTML = messageContent;
+            } else {
+                messageDiv.innerHTML = avatarHtml + messageContent;
+            }
+            
+            container.appendChild(messageDiv);
+            container.scrollTop = container.scrollHeight;
         }
 
         function sendMessage() {
@@ -2317,85 +2588,43 @@
             
             if (message) {
                 const messagesContainer = document.getElementById('chatMessages');
-                const now = new Date();
-                const time = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
-                
-                const messageDiv = document.createElement('div');
-                messageDiv.className = 'message sent';
-                messageDiv.innerHTML = `
-                    <div>
-                        <div class="message-bubble">${message}</div>
-                        <div class="message-time">${time}</div>
-                    </div>
-                `;
-                
-                messagesContainer.appendChild(messageDiv);
-                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                appendMessage(messagesContainer, 'sent', message, 'bx-user');
                 input.value = '';
                 
+                // Simulate auto-reply
                 setTimeout(() => {
-                    const replyDiv = document.createElement('div');
-                    replyDiv.className = 'message received';
-                    replyDiv.innerHTML = `
-                        <div class="message-avatar">${currentChatTech.avatar}</div>
-                        <div>
-                            <div class="message-bubble">Baik, saya akan segera menanganinya. Terima kasih!</div>
-                            <div class="message-time">${time}</div>
-                        </div>
-                    `;
-                    messagesContainer.appendChild(replyDiv);
-                    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                    if (message.toLowerCase().includes('cek lokasi')) {
+                        appendMessage(messagesContainer, 'received', 'Saya sudah di sekitar lokasi Anda. Mohon tunggu sebentar ya.', currentChatTech.avatar);
+                    } else if (message.toLowerCase().includes('terima kasih')) {
+                         appendMessage(messagesContainer, 'received', 'Sama-sama. Prioritas kami kepuasan Anda!', currentChatTech.avatar);
+                    } else {
+                         appendMessage(messagesContainer, 'received', 'Baik, saya akan segera merespons pesan Anda.', currentChatTech.avatar);
+                    }
                 }, 1500);
+            }
+        }
+
+        function showTracking(techName, avatar) {
+            hideAllPages();
+            currentPage = 'tracking';
+            document.getElementById('trackingTechName').textContent = techName;
+            document.getElementById('trackingTechAvatar').innerHTML = getIconElement(avatar);
+            document.getElementById('trackingPage').classList.remove('hidden');
+            document.getElementById('backButton').classList.remove('hidden');
+        }
+
+        // --- Utility Functions ---
+        function callTechnician() {
+            if(confirm(`Hubungi ${document.getElementById('trackingTechName').textContent}?\n\n📞 0812-3456-7890`)) {
+                alert('☎️ Memanggil teknisi...\n\nAnda akan segera terhubung dengan Teknisi');
             }
         }
 
         function showReviewDialog(techName) {
             alert(`⭐ Beri Rating untuk ${techName}\n\nKualitas Servis: ⭐⭐⭐⭐⭐\nKetepatan Waktu: ⭐⭐⭐⭐⭐\nSikap Ramah: ⭐⭐⭐⭐⭐\n\nTerima kasih atas review Anda!`);
         }
-
-        function showProfileEdit() {
-            alert('✏️ Edit Profil\n\nNama: Rifa\nEmail: rifa@email.com\nNo. HP: +6289530348150\nAlamat: Jl. Merdeka No. 45, Padalarang');
-        }
-
-        function showAddress() {
-            alert('📍 Alamat Saya\n\nAlamat Utama:\nJl. Merdeka No. 45\nPadalarang, Jawa Barat\n40553\n\n+ Tambah Alamat Baru');
-        }
-
-        function showPayment() {
-            alert('💳 Metode Pembayaran\n\n✓ BCA - 1234567890\n✓ GoPay - 089530348150\n✓ OVO - 089530348150\n\n+ Tambah Metode Baru');
-        }
-
-        function showRewards() {
-            alert(`🎁 Reward & Poin\n\nTotal Poin Anda: ${currentPoints}\n\n💎 Reward Tersedia:\n• 50 poin = Diskon Rp 25.000\n• 100 poin = Diskon Rp 50.000\n• 200 poin = Gratis 1x servis\n\nKumpulkan lebih banyak poin!`);
-        }
-
-        function showHelp() {
-            alert('❓ Bantuan\n\n📞 Customer Service:\n0812-3456-7890\n\n📧 Email:\nsupport@electrocare.com\n\n⏰ Jam Operasional:\nSenin - Minggu\n08:00 - 20:00 WIB');
-        }
-
-        function showSettings() {
-            alert('⚙️ Pengaturan\n\n🔔 Notifikasi: Aktif\n🌙 Mode Gelap: Nonaktif\n🗣️ Bahasa: Indonesia\n📱 Versi: 1.0.0');
-        }
-
-        function logout() {
-            if(confirm('Yakin ingin keluar dari ElectroCare?')) {
-                alert('Terima kasih telah menggunakan ElectroCare!\n\nSampai jumpa lagi! 👋');
-            }
-        }
-
-        function showTracking() {
-            hideAllPages();
-            currentPage = 'tracking';
-            document.getElementById('trackingPage').classList.remove('hidden');
-            document.getElementById('backButton').classList.remove('hidden');
-        }
-
-        function callTechnician() {
-            if(confirm('Hubungi Budi Santoso?\n\n📞 0812-3456-7890')) {
-                alert('☎️ Memanggil teknisi...\n\nAnda akan segera terhubung dengan Budi Santoso');
-            }
-        }
-
+        
+        // --- Initialization and Event Listeners ---
         document.addEventListener('DOMContentLoaded', function() {
             const chatInput = document.getElementById('chatInput');
             if (chatInput) {
@@ -2405,6 +2634,25 @@
                     }
                 });
             }
+            
+            document.getElementById('gadgetType').addEventListener('change', function() {
+                // Clear selected radio when gadget type changes
+                document.querySelectorAll('input[name="damageType"]').forEach(radio => radio.checked = false);
+                updateDamageOptions(); // Recalculate options
+            });
+            
+            document.querySelectorAll('input[name="damageType"]').forEach(radio => {
+                radio.addEventListener('change', updateDamageOptions);
+            });
+            
+             // Other placeholder functions (simulasi alerts)
+            window.showProfileEdit = () => alert('✏️ Edit Profil\n\nNama: Rifa\nEmail: rifa@email.com\nNo. HP: +6289530348150\nAlamat: Jl. Merdeka No. 45, Padalarang');
+            window.showAddress = () => alert('📍 Alamat Saya\n\nAlamat Utama:\nJl. Merdeka No. 45\nPadalarang, Jawa Barat\n40553\n\n+ Tambah Alamat Baru');
+            window.showPayment = () => alert('💳 Metode Pembayaran\n\n✓ BCA - 1234567890\n✓ GoPay - 089530348150\n✓ OVO - 089530348150\n\n+ Tambah Metode Baru');
+            window.showRewards = () => alert(`🎁 Reward & Poin\n\nTotal Poin Anda: ${currentPoints}\n\n💎 Reward Tersedia:\n• 50 poin = Diskon Rp 25.000\n• 100 poin = Diskon Rp 50.000\n• 200 poin = Gratis 1x servis\n\nKumpulkan lebih banyak poin!`);
+            window.showHelp = () => alert('❓ Bantuan\n\n📞 Customer Service:\n0812-3456-7890\n\n📧 Email:\nsupport@electrocare.com\n\n⏰ Jam Operasional:\nSenin - Minggu\n08:00 - 20:00 WIB');
+            window.showSettings = () => alert('⚙️ Pengaturan\n\n🔔 Notifikasi: Aktif\n🌙 Mode Gelap: Nonaktif\n🗣️ Bahasa: Indonesia\n📱 Versi: 1.0.0');
+            window.logout = () => { if(confirm('Yakin ingin keluar dari ElectroCare?')) { alert('Terima kasih telah menggunakan ElectroCare!\n\nSampai jumpa lagi! 👋'); }};
         });
     </script>
 </body>
